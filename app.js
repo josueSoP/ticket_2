@@ -7,7 +7,7 @@ require('dotenv').config();
 //carga de rutas
 const sequelize = require('./db/db');
 const vistaUsuarios = require('./app/views/view.usuarios');
-// const Usuarios = require('./app/models/model.usuarios');
+const Usuarios = require('./app/models/model.usuarios');
 
 
 //middlewares
@@ -37,7 +37,7 @@ app.use((err, req, res, next)=> {
 //Iniciar el Servidor
 async function inicioServidor() {
     try {
-        // await Usuarios.sync({alter:true});        
+        await Usuarios.sync({alter:true});        
         // await Usuarios.findOrCreate({
         //     where: {
         //         nombres: 'mario', 
