@@ -2,7 +2,6 @@
 const express = require('express');
 const app = express();
 require('dotenv').config();
-// const bodyParser = require('body-parser');
 
 //carga de rutas
 const sequelize = require('./db/db');
@@ -11,16 +10,14 @@ const Usuarios = require('./app/models/model.usuarios');
 
 
 //middlewares
-// app.use(bodyParser.urlencoded({extended:false}));
-// app.use(bodyParser.json());
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
-
 app.use(express.static(__dirname + '/public'))
 app.set('view engine', 'ejs')
 app.set('views', __dirname + '/views')
 
 //cors
+
 
 //rutas o vistas
 app.use (vistaUsuarios);
