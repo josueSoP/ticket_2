@@ -2,7 +2,7 @@ const {DataTypes, Model} = require('sequelize')
 const sequelize = require('../../db/db')
 
 //Definir mi Modelo con que voy a trabajar
-const Seguidores = sequelize.define('seguidores', {
+const Chat = sequelize.define('chat', {
     id : {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -34,4 +34,4 @@ const Seguidores = sequelize.define('seguidores', {
     timestamps: true
   })
 
-  module.exports = Seguidores
+  module.exports = Chat

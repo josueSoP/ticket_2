@@ -2,7 +2,7 @@ const {DataTypes, Model} = require('sequelize')
 const sequelize = require('../../db/db')
 
 //Definir mi Modelo con que voy a trabajar
-const Seguidores = sequelize.define('seguidores', {
+const Follow = sequelize.define('seguidores', {
     id : {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -26,4 +26,4 @@ const Seguidores = sequelize.define('seguidores', {
     timestamps: true
   })
 
-  module.exports = Seguidores
+  module.exports = Follow
