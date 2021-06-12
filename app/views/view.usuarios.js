@@ -1,5 +1,5 @@
 const controladorUsuarios = require('../controllers/controller.usuarios')
-const midd = require('../../middleware/midd.usuarios');
+const midd = require('../../middleware/midd.verificacion');
 
 module.exports = async (app)=> {
 

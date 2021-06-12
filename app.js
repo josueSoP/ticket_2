@@ -1,17 +1,22 @@
+//modulos
 const express = require('express');
 const app = express();
 require('dotenv').config();
+
+//carga de rutas
 const sequelize = require('./db/db');
-// const vistaProyecto = require('./MVC/views/view.proyecto');
 const vistaUsuarios = require('./app/views/view.usuarios');
-// const Proyecto = require('./MVC/models/model.proyectos');
-// const Flujo = require('./MVC/models/model.flujos');
+const vistaSeguidores = require('./app/views/view.seguidores');
+const vistaPublicaciones = require('./app/views/view.publicaciones');
+const vistaChat = require('./app/views/view.chat');
 const Usuarios = require('./app/models/model.usuarios');
+const Seguidores = require('./app/models/model.seguidores');
+const Publicaciones = require('./app/models/model.publicaciones');
+const Chat = require('./app/models/model.chat');
 
 //middlewares
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
-
 app.use(express.static(__dirname + '/public'))
 app.set('view engine', 'ejs')
 app.set('views', __dirname + '/views')
@@ -26,10 +31,21 @@ app.use((err, req, res, next)=> {
     return res.status(500).json('Se produjo un error inesperado, intente nuevamente')
 });
 
+//cors
+
+
+//rutas o vistas
+vistaUsuarios(app);
+vistaSeguidores(app);
+vistaPublicaciones(app);
+vistaChat(app);
+
 //Iniciar el Servidor
 async function inicioServidor() {
     try {
-        // await Flujo.sync({alter:true});
+        await Chat.sync({alter:true});        
+        await Seguidores.sync({alter:true});        
+        await Publicaciones.sync({alter:true}); 
         await Usuarios.sync({alter:true});
         await Usuarios.findOrCreate({
             where: {
@@ -54,5 +70,3 @@ async function inicioServidor() {
 
 inicioServidor();
 
-// vistaProyecto(app);
-vistaUsuarios(app);
