@@ -6,11 +6,11 @@ require('dotenv').config();
 //carga de rutas
 const sequelize = require('./db/db');
 const vistaUsuarios = require('./app/views/view.usuarios');
-const vistaSeguidores = require('./app/views/view.seguidores');
+const vistaFollow = require('./app/views/view.follow');
 const vistaPublicaciones = require('./app/views/view.publicaciones');
 const vistaChat = require('./app/views/view.chat');
 const Usuarios = require('./app/models/model.usuarios');
-const Seguidores = require('./app/models/model.seguidores');
+const Follow = require('./app/models/model.follow');
 const Publicaciones = require('./app/models/model.publicaciones');
 const Chat = require('./app/models/model.chat');
 
@@ -36,7 +36,7 @@ app.use((err, req, res, next)=> {
 
 //rutas o vistas
 vistaUsuarios(app);
-vistaSeguidores(app);
+vistaFollow(app);
 vistaPublicaciones(app);
 vistaChat(app);
 
@@ -44,7 +44,7 @@ vistaChat(app);
 async function inicioServidor() {
     try {
         await Chat.sync({alter:true});        
-        await Seguidores.sync({alter:true});        
+        await Follow.sync({alter:true});        
         await Publicaciones.sync({alter:true}); 
         await Usuarios.sync({alter:true});
         await Usuarios.findOrCreate({

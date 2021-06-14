@@ -8,6 +8,13 @@ const Chat = sequelize.define('chat', {
       primaryKey: true,
       autoIncrement: true,
     },
+    user_id: {//al que sigo
+      type: DataTypes.INTEGER,
+      references: {
+          model: 'usuarios',
+          key: 'id'
+       }
+    },
     emisor: {
       type: DataTypes.INTEGER,
       references: {

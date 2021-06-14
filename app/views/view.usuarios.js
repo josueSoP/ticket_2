@@ -22,8 +22,8 @@ module.exports = async (app)=> {
             if (resultado){
                 let usuarioInfo = await controladorUsuarios.datosUsuario(usuario)
                 let tokenResult = await controladorUsuarios.generaToken(usuario)
-                res.status(200).send({tokenResult, message: 'usuario y contraseña valido',usuarioInfo});
-                //res.json({ token: tokenResult, user: usuarioInfo })
+                // res.status(200).send({tokenResult, message: 'usuario y contraseña valido',usuarioInfo});
+                res.json({ token: tokenResult, user: usuarioInfo })
             }else {
                 throw new Error ("Contraseña Incorrecta")
             }
@@ -47,11 +47,11 @@ module.exports = async (app)=> {
     app.post('/registro', async (req,res)=>{
         data = req.body
         try{
-            let resultado = await controladorUsuarios.guardarUsuario()
+            let resultado = await controladorUsuarios.guardarUsuario(data)
             if(resultado) {
-                // res.redirect('/perfil')
+                res.redirect('/login')
                 console.log('Usuario Agregado Correctamente');
-                res.status(200).send({message: 'usuario agregado correctamente',data});
+                // res.status(200).send({message: 'usuario agregado correctamente',data});
             }
         }catch (err){
             res.status(400).send({message: 'No se pudo registrar el usuario'});
@@ -60,13 +60,13 @@ module.exports = async (app)=> {
     })
 
 /////////rutas para modificar un usuario
-    app.get('/edit/:id', midd.verificacionUsuario, async (req,res)=>{
+    app.get('/edit/:id', async (req,res)=>{
         let data = req.params.id;
         try {
             let resultado = await controladorUsuarios.buscarRegistro(data)
             if(resultado){
-            // res.render('login/editaRegistro.ejs', {result:resultado.dataValues })
-                res.status(200).send({message: 'usuario '+data+' encontrado'});
+            res.render('login/editaRegistro.ejs', {result:resultado.dataValues })
+                // res.status(200).send({message: 'usuario '+data+' encontrado'});
             }else{
                 res.status(400).send({message: 'No se encontro id'});
             }

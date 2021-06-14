@@ -8,6 +8,13 @@ const Publicaciones = sequelize.define('publicaciones', {
       primaryKey: true,
       autoIncrement: true,
     },
+    user_id: {//al que sigo
+      type: DataTypes.INTEGER,
+      references: {
+          model: 'usuarios',
+          key: 'id'
+       }
+    },
     usuario: {
       type: DataTypes.INTEGER,
       references: {

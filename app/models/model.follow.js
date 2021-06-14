@@ -8,6 +8,13 @@ const Follow = sequelize.define('seguidores', {
       primaryKey: true,
       autoIncrement: true,
     },
+    user_id: {//al que sigo
+      type: DataTypes.INTEGER,
+      references: {
+          model: 'usuarios',
+          key: 'id'
+       }
+    },
     followed: {
       type: DataTypes.INTEGER,
       references: {

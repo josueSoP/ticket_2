@@ -1,0 +1,56 @@
+<%- include("../cabeceras/cabecera.ejs",{tituloWeb:'Lista de usuarios registrados'}) %>
+<body>
+
+  <h1 class="p-3 text-center">Listado de Usuarios</h1>
+
+  <div class="container">
+    <div class="d-flex p-2">
+      <a href="/" class="btn btn-success">Regresar <i class='bx bxs-skip-previous-circle' ></i></a>
+    </div>
+    <div class="d-flex flex-row-reverse">
+      <a href="/create" class="btn btn-primary mt-4"><i class='bx bxs-plus-circle bx-md'></i></a>
+    </div>
+    <table class="table table-dark table-striped text-center mt-4">
+      <thead>
+        <tr class="bg-primary text-white">
+          <th scope="col">ID</th>
+          <th scope="col">NOMBRES</th>
+          <th scope="col">APELLIDOS</th>
+          <th scope="col">CORREO</th>
+          <th scope="col">USUARIO</th>
+          <th scope="col">ACCIONES</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% results.forEach((user)=>{ %>
+          <tr>
+            <td>
+              <%= user.id %>
+            </td>
+            <td>
+              <%= user.nombres %>
+            </td>
+            <td>
+              <%= user.apellidos %>
+            </td>
+            <td>
+              <%= user.email %>
+            </td>
+            <td>
+              <%= user.usuario %>
+            </td>
+            <td>
+              <a href="/edit/<%= user.id%>" class="btn btn-outline-info"><i class='bx bxs-edit'></i></a>
+              <a onclick="eliminarUsuario('<%= user.id %>')" class="btn btn-outline-danger"><i class='bx bxs-trash-alt'></i></a>            
+            </td>
+          </tr>
+          <% }) %>
+
+      </tbody>
+    </table>
+  </div>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script src="js/login/eliminarUsu.js"></script>
+</body>
+
+</html>
