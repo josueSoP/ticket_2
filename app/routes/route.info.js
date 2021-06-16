@@ -1,7 +1,6 @@
 const controladorInfo = require('../controllers/controller.infoInicio')
 
 module.exports = async (app)=> {
-// hacer que funcione la plantilla de llenado de info desl inicio
     app.get('/crearInfoTablas', async (req,res)=>{
         try{
             res.render('infoTablas.ejs');
@@ -9,7 +8,7 @@ module.exports = async (app)=> {
             res.estatus(400).json('No se puede mostrar')
         }
     })
-/////////Rutas para agregar y guardar un nuevo registro////
+
     // app.get('/crearInfoInicio',  async (req,res)=>{
     //     try{
     //         res.render('infoInicio.ejs')

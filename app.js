@@ -5,17 +5,16 @@ require('dotenv').config();
 
 //carga de rutas
 const sequelize = require('./db/db');
-const vistaUsuarios = require('./app/views/view.usuarios');
-const vistaFollow = require('./app/views/view.follow');
-const vistaPublicaciones = require('./app/views/view.publicaciones');
-// const vistaChat = require('./app/views/view.chat');
-const vistaPerfiles = require('./app/views/view.perfiles');
-const vistaInfo = require('./app/views/view.info');
+const rutaUsuarios = require('./app/routes/route.usuarios');
+const rutaFollow = require('./app/routes/route.follow');
+const rutaPublicaciones = require('./app/routes/route.publicaciones');
+// const rutaChat = require('./app/views/view.chat');
+const rutaPerfiles = require('./app/routes/route.perfiles');
+const rutaInfo = require('./app/routes/route.info');
 
 const Usuarios = require('./app/models/model.usuarios');
 const Follow = require('./app/models/model.follow');
 const Publicaciones = require('./app/models/model.publicaciones');
-// const Chat = require('./app/models/model.chat');
 const Perfiles = require('./app/models/model.perfiles');
 
 //middlewares
@@ -39,18 +38,16 @@ app.use((err, req, res, next)=> {
 
 
 //rutas o vistas
-vistaUsuarios(app);
-vistaFollow(app);
-vistaPublicaciones(app);
-// vistaChat(app);
-vistaPerfiles(app);
-vistaInfo(app);
+rutaUsuarios(app);
+rutaFollow(app);
+rutaPublicaciones(app);
+rutaPerfiles(app);
+rutaInfo(app);
 
 //Iniciar el Servidor
 async function inicioServidor() {
     try {
         await Perfiles.sync({alter:true});        
-        // await Chat.sync({alter:true});        
         await Follow.sync({alter:true});        
         await Publicaciones.sync({alter:true}); 
         await Usuarios.sync({alter:true});
