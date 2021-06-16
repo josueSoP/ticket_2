@@ -1,0 +1,258 @@
+<%- include("cabeceras/plantillas.ejs",{tituloWeb:'Crear Perfil'}) %>
+
+<body>
+    <div class="navbar-wrapper">
+        <div class="container-fluid">
+            <div class="navbar navbar-default navbar-static-top" role="navigation">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span><span
+                                class="icon-bar"></span><span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="/" style="margin-right:-8px; margin-top:-5px;">
+                            <img alt="Brand" src="logoTecla.png" width="30px" height="30px">
+                        </a>
+                        <a class="navbar-brand" href="/">TECLA</a>
+                    </div>
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li><a href="/usuarios">Tecllers</a></li>
+                            <li><a href="/perfil">Mi Perfil</a></li>
+                            <!-- <li><a href="#"><i class="fa fa-envelope-o fa-lg" aria-hidden="true"></i></a></li> -->
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <span class="user-avatar pull-left" style="margin-right:8px; margin-top:-5px;">
+                                    <img src="https://image.freepik.com/vector-gratis/perfil-empresario-dibujos-animados_18591-58479.jpg" class="img-responsive img-circle" title="John Doe" alt="John Doe" width="30px" height="30px">
+                                </span>
+                                <span class="user-name">
+                                    Juan
+                                </span>
+                                <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <div class="navbar-content">
+                                            <div class="row">
+                                                <div class="col-md-5">
+                                                    <img src="https://image.freepik.com/vector-gratis/perfil-empresario-dibujos-animados_18591-58479.jpg" alt="Alternate Text" class="img-responsive" width="120px" height="120px" />
+                                                    <p class="text-center small">
+                                                        <a href="./3X6zm">Change Photo</a></p>
+                                                </div>
+                                                <div class="col-md-7">
+                                                    <span>John Doe</span>
+                                                    <p class="text-muted small">
+                                                        example@pods.tld</p>
+                                                    <div class="divider">
+                                                    </div>
+                                                    <a href="./56ExR" class="btn btn-default btn-xs"><i class="fa fa-user-o" aria-hidden="true"></i> Profile</a>
+                                                    <a href="#" class="btn btn-default btn-xs"><i class="fa fa-address-card-o" aria-hidden="true"></i> Contacts</a>
+                                                    <a href="#" class="btn btn-default btn-xs"><i class="fa fa-cogs" aria-hidden="true"></i> Settings</a>
+                                                    <a href="#" class="btn btn-default btn-xs"><i class="fa fa-question-circle-o" aria-hidden="true"></i> Help!</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="navbar-footer">
+                                            <div class="navbar-footer-content">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <a href="#" class="btn btn-default btn-sm"><i class="fa fa-unlock-alt" aria-hidden="true"></i> Change Passowrd</a>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <a href="#" class="btn btn-default btn-sm pull-right"><i class="fa fa-power-off" aria-hidden="true"></i> Sign Out</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- barra lateral izquierda -->
+        <div class="col-lg-3 col-md-3 hidden-sm hidden-xs">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="media">
+                        <!-- foto de perfil -->
+                        <div class="profile-userpic">
+                            <img src="https://image.freepik.com/vector-gratis/perfil-empresario-dibujos-animados_18591-58479.jpg" class="img-responsive" alt="">
+                        </div>
+                        <div class="profile-usertitle text-center">
+                            <div class="profile-usertitle-name">Juan </div>
+                            <div class="profile-usertitle-job"> Developer </div>
+                        </div>
+                        <div class="profile-userbuttons text-center">
+                            <button type="button" class="btn btn-success btn-sm">Seguir</button>
+                            <!-- <button type="button" class="btn btn-danger btn-sm">Mensage</button> -->
+                        </div>
+                        <div class="media-body">
+                            <hr>
+                            <h4><strong>Nombre</strong></h3>
+                            <p>Nombres + apellidos</p>
+                            <hr>
+                            <h4><strong>Localizacion</strong></h3>
+                            <p>lugar de recidencia</p>
+                            <hr>
+                            <h4><strong>Edad</strong></h3>
+                            <p>edad</p>
+                            <hr>
+                            <h4><strong>Estudios</strong></h3>
+                            <p>universidad</p>
+                            <hr>
+                            <h4><strong>Idiomas</strong></h3>
+                            <p>Idioma</p>
+                            <hr>
+                            <h4><strong>Hobies</strong></h3>
+                            <p>hobies</p>
+                            <hr>
+                            <h4><strong>LinkenIn</strong></h3>
+                            <p>linkedin</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- contenido del perfil -->
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="media">
+                        <div class="profile-content">
+                            <h3 class="text-center">INICIO DE CAPACITACION</h3>
+                            <div class="row">
+
+                                <div class="card ">
+                                    <div class="card-header text-center"> CONOCIMIENTOS </div>
+                                    <div class="card-body">
+                                        <div class="progress"> Bases de datos
+                                            <div class="progress-bar bg-warning" role="progressbar" style="width: 60%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">3</div>
+                                        </div>
+                                        <div class="progress"> Testing
+                                            <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                        <div class="progress">Seguridad
+                                            <div class="progress-bar" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                        <div class="progress">Teoria de objetos
+                                            <div class="progress-bar" role="progressbar" style="width: 20%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card ">
+                                    <div class="card-header text-center"> TECNOLOGIAS </div>
+                                    <div class="card-body">
+                                        <div class="progress">NodeJS
+                                            <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                        <div class="progress">Frontend
+                                            <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                        <div class="progress">Swagger
+                                            <div class="progress-bar" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                        <div class="progress">JavaScript
+                                            <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card ">
+                                    <div class="card-header text-center"> DESEMPEÑO </div>
+                                    <div class="card-body">
+                                        <div class="progress">Calidad de Codigo
+                                            <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                        <div class="progress">Velocidad de Entrega
+                                            <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                        <div class="progress">Performance de Codigo
+                                            <div class="progress-bar" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>    
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="media">
+                        <div class="profile-content">
+                            <h3 class="text-center">CAPACITACION ACTUAL</h3>
+                            <div class="row">
+                                
+                                <div class="card ">
+                                    <div class="card-header text-center"> CONOCIMIENTOS </div>
+                                    <div class="card-body">
+                                        <div class="progress"> Bases de datos
+                                            <div class="progress-bar" role="progressbar" style="width: 60%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">3</div>
+                                        </div>
+                                        <div class="progress"> Testing
+                                            <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                        <div class="progress">Seguridad
+                                            <div class="progress-bar" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                        <div class="progress">Teoria de objetos
+                                            <div class="progress-bar" role="progressbar" style="width: 20%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card ">
+                                    <div class="card-header text-center"> TECNOLOGIAS </div>
+                                    <div class="card-body">
+                                        <div class="progress">NodeJS
+                                            <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                        <div class="progress">Frontend
+                                            <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                        <div class="progress">Swagger
+                                            <div class="progress-bar" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                        <div class="progress">JavaScript
+                                            <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card ">
+                                    <div class="card-header text-center"> DESEMPEÑO </div>
+                                    <div class="card-body">
+                                        <div class="progress">Calidad de Codigo
+                                            <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                        <div class="progress">Velocidad de Entrega
+                                            <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                        <div class="progress">Performance de Codigo
+                                            <div class="progress-bar" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>    
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src=""></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<%- include("cabeceras/cabecera.ejs",{tituloWeb:'Informacion incio'}) %>
+
+<body>
+    <form id="formInfoInicio" method="POST" class="row g-3 needs-validation "></form>
+        
+    
+        <div class="container mt-5">
+            <h1>Ingresa tus conocimientos con los que entraste a TECLA</h1>
+            <div class="row">
+                
+                <div class="col-3">
+                    <div class="card h-100 item-Height ">
+                        <h5 class="card-header">CONOCIMIENTOS</h5>
+                        <div class="card-body">
+                            <label for="bases" class="form-label">Bases de Datos</label>
+                            <input type="number" class="form-range" min="0" max="5" id="bases">
+                            <label for="customRange2" class="form-label">APIS</label>
+                            <input type="range" class="form-range" min="0" max="5" id="customRange2">
+                            <label for="customRange2" class="form-label">Testings</label>
+                            <input type="range" class="form-range" min="0" max="5" id="customRange2">
+                            <label for="customRange2" class="form-label">Seguridad</label>
+                            <input type="range" class="form-range" min="0" max="5" id="customRange2">
+                            <label for="customRange2" class="form-label">Teoria de Objetos</label>
+                            <input type="range" class="form-range" min="0" max="5" id="customRange2">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-3">
+                    <div class="card h-100 item-Height ">
+                        <h5 class="card-header">TECNOLOGIAS</h5>
+                        <div class="card-body">
+                            <label for="customRange2" class="form-label">NodeJS</label>
+                            <input type="range" class="form-range" min="0" max="5" id="customRange2">
+                            <label for="customRange2" class="form-label">Frontend</label>
+                            <input type="range" class="form-range" min="0" max="5" id="customRange2">
+                            <label for="customRange2" class="form-label">Swagger</label>
+                            <input type="range" class="form-range" min="0" max="5" id="customRange2">
+                            <label for="customRange2" class="form-label">JavaScript</label>
+                            <input type="range" class="form-range" min="0" max="5" id="customRange2">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-3">
+                    <div class="card h-100 item-Height">
+                        <h5 class="card-header">DESEMPEÑO</h5>
+                        <div class="card-body">
+                            <label for="customRange2" class="form-label">Calidad de Codigo</label>
+                            <input type="range" class="form-range" min="0" max="5" id="customRange2">
+                            <label for="customRange2" class="form-label">Velocidad de Entrega</label>
+                            <input type="range" class="form-range" min="0" max="5" id="customRange2">
+                            <label for="customRange2" class="form-label">Performance de Codigo</label>
+                            <input type="range" class="form-range" min="0" max="5" id="customRange2">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-3">
+                    <div class="card h-100 item-Height">
+                        <h5 class="card-header">HABILIDADES BLANDA</h5>
+                        <div class="card-body">
+                            <label for="customRange2" class="form-label">Enfocado</label>
+                            <input type="range" class="form-range" min="0" max="5" id="customRange2">
+                            <label for="customRange2" class="form-label">Trabajo en Equipo</label>
+                            <input type="range" class="form-range" min="0" max="5" id="customRange2">
+                            <label for="customRange2" class="form-label">Comprometido</label>
+                            <input type="range" class="form-range" min="0" max="5" id="customRange2">
+                            <label for="customRange2" class="form-label">Comunicacion</label>
+                            <input type="range" class="form-range" min="0" max="5" id="customRange2">
+                            <label for="customRange2" class="form-label">Capacidad de aprendizaje</label>
+                            <input type="range" class="form-range" min="0" max="5" id="customRange2">
+                            <label for="customRange2" class="form-label">Resolucion de Problemas</label>
+                            <input type="range" class="form-range" min="0" max="5" id="customRange2">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-3 mt-3">
+                    <div class="card">
+                        <h5 class="card-header">ENTORNOS PROFESIONALES</h5>
+                        <div class="card-body">
+                            <label for="customRange2" class="form-label">Versionado - Github</label>
+                            <input type="range" class="form-range" min="0" max="5" id="customRange2">
+                            <label for="customRange2" class="form-label">Trello - Jira</label>
+                            <input type="number" class="form-range display-inline" min="0" max="5" id="customRange2" >
+                            <label for="customRange2" class="form-label">Slack</label>
+                            <input type="number" class="form-range" min="0" max="5" id="customRange2">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-3 mt-3">
+                    <div class="card">
+                        <h5 class="card-header">CONOCIMIENTO EXTRA</h5>
+                        <div class="card-body text-center">
+                            <input type="text" placeholder="nombre conocimiento">
+                            <input type="range" class="form-range" min="0" max="5" id="customRange2">
+                            
+                            <button type="submit" class="btn btn-primary mt-4"><i class='bx bxs-plus-circle bx-sm'></i></a>
+                        </div>
+                    </div>
+                </div>
+                 
+                
+            </div>
+
+            <div class="text-center mb-5 mt-3" >
+                <button type="submit" class="btn btn-primary col-md-6" >Gurdar</button>
+            </div>
+    
+        </div>  
+    </form>
+    
+</body>
+</html>

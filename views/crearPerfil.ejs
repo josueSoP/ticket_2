@@ -1,0 +1,104 @@
+<%- include("cabeceras/plantillas.ejs",{tituloWeb:'Crear Perfil'}) %>
+<body>
+    <hr>
+    <div class="container bootstrap snippet">
+        <div class="row">
+            <!-- barra lateral izquiera -->
+            <div class="col-sm-3">
+                <div class="text-center">
+                    <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar">
+                    <h6>Seleccione foto de perfil</h6>
+                    <input type="file" class="text-center center-block file-upload">
+                </div></hr><br>
+
+                <div class="panel panel-default">
+                <div class="panel-heading">Website <i class="fa fa-link fa-1x"></i></div>
+                <div class="panel-body"><a href="http://bootnipets.com">bootnipets.com</a></div>
+                </div>
+            </div>
+
+            <!-- formulario para llenar perfil -->
+            <div class="col-sm-9">
+                <form class="formPerfil" action="##" method="post" id="nuevoPerfil">
+
+                    <div class="form-group">
+                        <div class="col-xs-6">
+                            <label for="nombres"><h4>Nombres</h4></label>
+                            <input required type="text" class="form-control" name="nombres" id="nombres" placeholder="Nombres" >
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-xs-6">
+                            <label for="apellidos"><h4>Apellidos</h4></label>
+                            <input required type="text" class="form-control" name="apellidos" id="apellidos" placeholder="Apellidos" >
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-xs-6">
+                            <label for="pais"><h4>Pais</h4></label>
+                            <input required type="text" class="form-control" name="pais" id="pais" placeholder="Pais de residencia">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-xs-6">
+                            <label for="ciudad"><h4>Ciudad</h4></label>
+                            <input required type="text" class="form-control" name="ciudad" id="ciudad" placeholder="Ciudad de residencia" >
+                        </div>
+                    </div>            
+
+                    <div class="form-group">
+                        <div class="col-xs-6">
+                            <label for="edad"><h4>Edad</h4></label>
+                            <input required type="number" class="form-control" name="edad" id="edad" placeholder="Numero de años">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-xs-6">
+                            <label for="estudios"><h4>Estudios</h4></label>
+                            <input required type="text" class="form-control" id="estudios" placeholder="Universidad o ultimo grado de estudios" >
+                        </div>
+                    </div>
+
+                    <div class="form-group"> 
+                        <div class="col-xs-6">
+                            <label for="idiomas"><h4>Idiomas</h4></label>
+                            <input required type="text" class="form-control" name="idiomas" id="idiomas" placeholder="Algun idioma Extra">
+                        </div>
+                    </div>
+
+                    <div class="form-group">                 
+                        <div class="col-xs-6">
+                            <label for="linkedin"><h4>LinkedIn</h4></label>
+                            <input required type="text" class="form-control" name="linkedin" id="linkedin" placeholder="Tu perfil en Linkedin">
+                        </div>
+                    </div>
+
+                    <div class="form-group">  
+                        <div class="col-xs-6">
+                            <label for="hobies"><h4>Hobies</h4></label>
+                            <textarea required type="text" class="form-control" rows="3" name="hobies" id="hobies" placeholder="Escribe algun hobie" ></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                                <br>
+                                <button class="btn btn-lg btn-success pull-right" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
+                                <!--<button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button>-->
+                            </div>
+                    </div>
+                </form>
+            </div>
+            
+        </div><!--/row-->
+    </div>
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src=""></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>

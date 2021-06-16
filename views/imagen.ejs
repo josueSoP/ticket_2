@@ -1,0 +1,11 @@
+<%- include("cabeceras/cabecera.ejs",{tituloWeb:'Agregar Imagen'}) %>
+<body>
+    <form action="/subir" method="post" enctype="multipart/form-data">
+        <input type="file" name="imagen" multiple>
+        <button type="submit">Enviar</button>
+    </form>
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src=""></script>
+</body>
+</html>

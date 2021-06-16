@@ -49,7 +49,7 @@ module.exports.generaToken = async (data)=>{
 module.exports.guardarUsuario = async (data)=>{
     try{
         //si ingreso todos los dato
-        if(data.nombres && data.apellidos && data.usuario && data.email && data.pass && data.imagen){ 
+        if(data.nombres && data.apellidos && data.usuario && data.email && data.pass){ 
             let resultado = await Usuarios.findOne({where:{usuario: data.usuario}})
             if (resultado != null){
                 // return false; 
@@ -60,8 +60,7 @@ module.exports.guardarUsuario = async (data)=>{
                     apellidos: data.apellidos,
                     email: data.email,
                     usuario: data.usuario,
-                    pass: data.pass,
-                    imagen: data.imagen}))
+                    pass: data.pass}))
                 data.pass = undefined; //para que no se muestre la contraseña la hacer el SEND
                 return true;
             }
@@ -100,7 +99,7 @@ module.exports.buscarRegistro = async (data)=>{
 //guardar modificacion
 module.exports.modificarUsuario = async (data) => {
     try {
-        await Usuarios.update({nombres: data.nombres, apellidos: data.apellidos, email: data.email, usuario: data.usuario, pass: data.pass,imagen: data.imagen}, {where: { id : data.id}})
+        await Usuarios.update({nombres: data.nombres, apellidos: data.apellidos, email: data.email, usuario: data.usuario, pass: data.pass}, {where: { id : data.id}})
         return true;
     }catch (err){
         throw new Error ('No se pudo actualizar el producto seleccionado')

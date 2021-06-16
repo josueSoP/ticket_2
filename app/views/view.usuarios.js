@@ -2,8 +2,7 @@ const controladorUsuarios = require('../controllers/controller.usuarios')
 const midd = require('../../middleware/midd.verificacion');
 
 module.exports = async (app)=> {
-
-    app.get('/perfil', midd.verificacionUsuario, async (req, res)=> {
+    app.get('/perfilU', midd.verificacionUsuario, async (req, res)=> {
         res.json('ok')
     })
     ////////////// LOGIN DE USUARIOS /////////////////////////
@@ -49,7 +48,7 @@ module.exports = async (app)=> {
         try{
             let resultado = await controladorUsuarios.guardarUsuario(data)
             if(resultado) {
-                res.redirect('/login')
+                res.redirect('/crearPerfil')
                 console.log('Usuario Agregado Correctamente');
                 // res.status(200).send({message: 'usuario agregado correctamente',data});
             }

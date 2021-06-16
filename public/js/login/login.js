@@ -8,7 +8,6 @@ class Usuarios {
         this.nombre = "",
         this.email = "",
         this.user = "",
-        this.imagen = "",
         this.token = ""
     }
 
@@ -46,11 +45,9 @@ form.addEventListener('submit', async (event) => {
     } else {
         let data = await Usuarios.recuperaUsuario();
         data.user = vuelta.user.usuario;
-        data.imagen = vuelta.user.imagen;
         data.id = vuelta.user.id;
         data.email = vuelta.user.email;
         data.nombre = vuelta.user.nombres + " " + vuelta.user.apellidos;
-        data.token = vuelta.token;
         Usuarios.guardaUsuario(data);
             location.href = '/perfil'
     }

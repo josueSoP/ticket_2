@@ -4,7 +4,6 @@ let apellidos = document.getElementById('apellidos');
 let usuario = document.getElementById('usuario');
 let email = document.getElementById('email');
 let pass = document.getElementById('pass');
-let imagen = document.getElementById('imagen');
 
 //Manda el post
 form.addEventListener('submit', async (event) => {
@@ -23,8 +22,7 @@ form.addEventListener('submit', async (event) => {
             "apellidos": apellidos.value,
             "email": email.value,
             "usuario": usuario.value,
-            "pass": pass.value,
-            "imagen": imagen.value
+            "pass": pass.value
         })
     })
 
@@ -39,7 +37,7 @@ form.addEventListener('submit', async (event) => {
             title: "Usuario Agregado Correctamente",
             icon: "success",
           });
-        location.href = '/login'
+        location.href = '/crearPerfil'
     }
 } catch (error) {
     swal({
@@ -57,5 +55,4 @@ function newFormulario()
     email.value = ""
     usuario.value = ""
     pass.value = ""
-    imagen.value = ""
 }

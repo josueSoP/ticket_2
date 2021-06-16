@@ -8,11 +8,14 @@ const sequelize = require('./db/db');
 const vistaUsuarios = require('./app/views/view.usuarios');
 const vistaFollow = require('./app/views/view.follow');
 const vistaPublicaciones = require('./app/views/view.publicaciones');
-const vistaChat = require('./app/views/view.chat');
+// const vistaChat = require('./app/views/view.chat');
+const vistaPerfiles = require('./app/views/view.perfiles');
+// const vistaInfo = require('./app/views/view.info');
 const Usuarios = require('./app/models/model.usuarios');
 const Follow = require('./app/models/model.follow');
 const Publicaciones = require('./app/models/model.publicaciones');
-const Chat = require('./app/models/model.chat');
+// const Chat = require('./app/models/model.chat');
+const Perfiles = require('./app/models/model.perfiles');
 
 //middlewares
 app.use(express.json())
@@ -38,12 +41,15 @@ app.use((err, req, res, next)=> {
 vistaUsuarios(app);
 vistaFollow(app);
 vistaPublicaciones(app);
-vistaChat(app);
+// vistaChat(app);
+vistaPerfiles(app);
+// vistaInfo(app);
 
 //Iniciar el Servidor
 async function inicioServidor() {
     try {
-        await Chat.sync({alter:true});        
+        await Perfiles.sync({alter:true});        
+        // await Chat.sync({alter:true});        
         await Follow.sync({alter:true});        
         await Publicaciones.sync({alter:true}); 
         await Usuarios.sync({alter:true});
@@ -53,8 +59,7 @@ async function inicioServidor() {
                 apellidos: 'soto', 
                 email: 'josue@mail.com', 
                 usuario: 'josu', 
-                pass: 'jo123',
-                imagen: 'jojsojs'
+                pass: 'jo123'
             }
         })
         await sequelize.authenticate();

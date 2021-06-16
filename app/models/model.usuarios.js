@@ -26,11 +26,7 @@ const Usuarios = sequelize.define('usuarios', {
   pass: {
     type: DataTypes.STRING(20),
     allowNull: false
-  },
-  imagen: {
-    type: DataTypes.STRING(100),
-    allowNull: false
-  },
+  }
 },{
   timestamps: true
 })
