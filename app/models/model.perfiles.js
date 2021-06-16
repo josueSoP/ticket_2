@@ -62,7 +62,7 @@ module.exports = Perfiles;
     }
   }
 
-    //////////// MODELO PARA MODIFICAR UN USUARIOS ///////////////////
+    //////////// MODELO PARA MODIFICAR UN PERFILE ///////////////////
   module.exports.buscarId = async (data) => {
     try{
       let resultado = await Perfiles.findAll({ where: {id : data} })
@@ -74,4 +74,10 @@ module.exports = Perfiles;
     }catch (err) {
       throw new Error ('No existe este usuario')
     }
+  }
+
+   /////MODULO PARA LISTAR PERFILES ///////////
+   module.exports.listar = async () => {
+    let resultado = await sequelize.query('SELECT * FROM usuarios')
+    return resultado[0]
   }

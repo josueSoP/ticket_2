@@ -56,3 +56,15 @@ module.exports.modificarUsuario = async (data) => {
         throw new Error ('No se pudo actualizar el producto seleccionado')
     }
 }
+
+////// MODULOS PARA LISTAR USUARIOS PERFILES //////////
+module.exports.listarPerfiles = async ()=>{
+    try {
+        let resultado = await Perfiles.listar()
+        return resultado
+        
+    }catch (err){
+        console.log('Error de modelos' + err)
+        throw new Error ('Ocurrio un problema en el controlador listar usuarios')
+    }
+} 

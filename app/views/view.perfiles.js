@@ -79,6 +79,17 @@ module.exports = async (app)=> {
         }
     });
 
+//////////////ruta para listar perfiles
+    app.get('/usuarios', midd.verificacionUsuario, async(req,res)=> {
+        try {
+            let resultado = await controladorPerfile.listarPerfiles()
+            res.render('login/listaRegistro.ejs', {results:resultado});
+        }catch (err){
+            console.log(err)
+            res.status(400).json('Error al dirigirse a la ruta vistas')
+        }
+    })
+
 ////////////imagen //////////////
     app.get('/archivo', (req, res) => {
         res.render('imagen.ejs')
