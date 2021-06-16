@@ -10,7 +10,8 @@ const vistaFollow = require('./app/views/view.follow');
 const vistaPublicaciones = require('./app/views/view.publicaciones');
 // const vistaChat = require('./app/views/view.chat');
 const vistaPerfiles = require('./app/views/view.perfiles');
-// const vistaInfo = require('./app/views/view.info');
+const vistaInfo = require('./app/views/view.info');
+
 const Usuarios = require('./app/models/model.usuarios');
 const Follow = require('./app/models/model.follow');
 const Publicaciones = require('./app/models/model.publicaciones');
@@ -43,7 +44,7 @@ vistaFollow(app);
 vistaPublicaciones(app);
 // vistaChat(app);
 vistaPerfiles(app);
-// vistaInfo(app);
+vistaInfo(app);
 
 //Iniciar el Servidor
 async function inicioServidor() {

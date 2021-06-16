@@ -13,11 +13,12 @@ const almacena = multer.diskStorage({
 const upload = multer({ storage: almacena})
 
 module.exports = async (app)=> {
-    app.get('/perfilP', midd.verificacionUsuario, async (req, res)=> {
+    app.get('/listaPerfiles', midd.verificacionUsuario, async (req, res)=> {
         res.json('ok')
     })
-/////////////////// RUTA DE PERFIL ///////////////////////////
-        // este es como el listar usuarios
+/////////////////// RUTAs DEl PERFIL ///////////////////////////
+    // nos muestra nuestro perfil con la informacion preciamente agregada
+    //  es como el listar usuarios
     app.get('/perfil',  async (req,res)=>{
         try{
             res.render('perfil.ejs')
@@ -41,7 +42,7 @@ module.exports = async (app)=> {
         try{
             let resultado = await controladorPerfile.guardarPerfil(data)
             if(resultado) {
-                res.redirect('/perfil')
+                res.redirect('/crearInfoInicio')
                 console.log('Usuario Agregado Correctamente');
                 // res.status(200).send({message: 'usuario agregado correctamente',data});
             }
@@ -57,22 +58,21 @@ module.exports = async (app)=> {
         try {
             let resultado = await controladorPerfile.buscarPerfil(data)
             if(resultado){
-            res.render('login/editaRegistro.ejs', {result:resultado.dataValues })
+            res.render('crearPerfil.ejs', {result:resultado.dataValues })
                 // res.status(200).send({message: 'usuario '+data+' encontrado'});
             }else{
                 res.status(400).send({message: 'No se encontro id'});
             }
-
         }catch (err){
             res.status(400).json('Error al dirigirse a la pagina EDITAR')
         }
     })
 
-    app.post('/update/:id', midd.verificacionUsuario, async (req, res)=>{
+    app.post('/updatePerfil/:id', midd.verificacionUsuario, async (req, res)=>{
         try {
             let resultado = await controladorPerfile.modificarPerfil(req.body);
             if(resultado){
-                res.redirect('/login');
+                res.redirect('/perfil');
             }
         } catch (error) {
             res.status(400).json('No se puedo modificar el usuarios')
