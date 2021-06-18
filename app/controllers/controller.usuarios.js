@@ -97,10 +97,17 @@ module.exports.buscarRegistro = async (data)=>{
 }
 
 //guardar modificacion
-module.exports.modificarUsuario = async (data) => {
+module.exports.modificarUsuario = async (id, data) => {
     try {
-        await Usuarios.update({nombres: data.nombres, apellidos: data.apellidos, email: data.email, usuario: data.usuario, pass: data.pass}, {where: { id : data.id}})
-        return true;
+        await Usuarios.update({
+            nombres: data.nombres, 
+            apellidos: data.apellidos, 
+            email: data.email, 
+            usuario: data.usuario, 
+            pass: data.pass}, 
+            {where: { id : id} })
+        let result = await Usuarios.findOne({where: {id: id} })
+        return result;
     }catch (err){
         throw new Error ('No se pudo actualizar el producto seleccionado')
     }

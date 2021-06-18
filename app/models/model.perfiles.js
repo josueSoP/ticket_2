@@ -65,7 +65,7 @@ module.exports = Perfiles;
     //////////// MODELO PARA MODIFICAR UN PERFILE ///////////////////
   module.exports.buscarId = async (data) => {
     try{
-      let resultado = await Perfiles.findAll({ where: {id : data} })
+      let resultado = await Perfiles.findOne({ where: {id : data} })
       if (resultado === null){
         return false
       }else {

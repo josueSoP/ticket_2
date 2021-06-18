@@ -15,7 +15,7 @@ module.exports.guardarPerfil = async (data)=>{
                 estudios: data.estudios,
                 idiomas: data.idiomas,
                 linkedin: data.linkedin,
-                hombies: data.hombies}))
+                hombies: data.hombies} ))
             return true;
         }else{
             throw new Error ('Envia todos los datos necesarios')
@@ -28,17 +28,17 @@ module.exports.guardarPerfil = async (data)=>{
 
 // ////////////MODULOS PARA MODIFICAR USUARIO//////////////
 //Seleccionar un solo registro por su ID para poderlo modificar
-module.exports.buscarRegistro = async (data)=>{
+module.exports.buscarPerfil = async (data)=>{
     try {
         let resultado = await Perfiles.buscarId(data)
         return resultado
     }catch (err) {
-        throw new Error ('Ocurrio un problema en el controlador al BUSCAR usuario')
+        throw new Error ('Ocurrio un problema en el controlador al BUSCAR perfil')
     }
 }
 
 //guardar modificacion
-module.exports.modificarUsuario = async (data) => {
+module.exports.modificarPerfil = async (id, data) => {
     try {
         await Perfiles.update({
             imagen: data.imagen,
@@ -50,10 +50,12 @@ module.exports.modificarUsuario = async (data) => {
             estudios: data.estudios,
             idiomas: data.idiomas,
             linkedin: data.linkedin,
-            hombies: data.hombies}, {where: { id : data.id}})
-        return true;
+            hombies: data.hombies},
+            {where: { id : id} })
+        let resultado = await Perfiles.findOne({where: {id: id}})
+        return resultado;
     }catch (err){
-        throw new Error ('No se pudo actualizar el producto seleccionado')
+        throw new Error ('Controlador: Perfil no actualizado ')
     }
 }
 

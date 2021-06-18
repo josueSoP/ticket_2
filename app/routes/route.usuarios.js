@@ -2,9 +2,6 @@ const controladorUsuarios = require('../controllers/controller.usuarios')
 const midd = require('../../middleware/midd.verificacion');
 
 module.exports = async (app)=> {
-    app.get('/perfilU', midd.verificacionUsuario, async (req, res)=> {
-        res.json('ok')
-    })
     ////////////// LOGIN DE USUARIOS /////////////////////////
     app.get('/login', async (req,res)=>{
         try{
@@ -64,8 +61,8 @@ module.exports = async (app)=> {
         try {
             let resultado = await controladorUsuarios.buscarRegistro(data)
             if(resultado){
-            res.render('login/editaRegistro.ejs', {result:resultado.dataValues })
-                // res.status(200).send({message: 'usuario '+data+' encontrado'});
+                res.render('login/editaRegistro.ejs', {result:resultado.dataValues })
+                // res.status(200).send({message: 'usuario  encontrado', resultado});
             }else{
                 res.status(400).send({message: 'No se encontro id'});
             }
@@ -76,11 +73,12 @@ module.exports = async (app)=> {
     })
 
     app.post('/update/:id', midd.verificacionUsuario, async (req, res)=>{
+        let id = req.params.id;
+        let data = req.body;
         try {
-            let resultado = await controladorUsuarios.modificarUsuario(req.body);
-            if(resultado){
-                res.redirect('/login');
-            }
+            let resultado = await controladorUsuarios.modificarUsuario(id, data);
+            res.status(200).send({message: 'usuario editado correctamente', resultado});
+            // res.redirect('/perfil');            
         } catch (error) {
             res.status(400).json('No se puedo modificar el usuarios')
         }
@@ -104,7 +102,7 @@ module.exports = async (app)=> {
             let resultado = await controladorUsuarios.eliminarRegistro(data)
             if(resultado){
                 res.status(200).send({message: 'usuario '+data+' eliminado correctamente'});
-                // res.redirect('/perfil');
+                // res.redirect('/login');
             }      
         }catch (err){
             res.status(400).json('No se puedo eliminar el usuario')

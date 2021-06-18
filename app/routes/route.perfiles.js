@@ -12,19 +12,17 @@ const almacena = multer.diskStorage({
   })
 const upload = multer({ storage: almacena})
 
+
+/////////////////// RUTAS DEl PERFIL ///////////////////////////
 module.exports = async (app)=> {
-    app.get('/listaPerfiles', midd.verificacionUsuario, async (req, res)=> {
-        res.json('ok')
-    })
-/////////////////// RUTAs DEl PERFIL ///////////////////////////
-    // nos muestra nuestro perfil con la informacion preciamente agregada
-    //  es como el listar usuarios
+    // nos muestra nuestro perfil con la informacion agregada al registrarnos
+    //  es como el listar usuarios (solo vemos la info y tenemos botones)
     app.get('/perfil',  async (req,res)=>{
         try{
             res.render('perfil.ejs')
         }catch (err){
             console.log(err)
-            res.status(400).json('Error al dirigirse a la pagina CREAR')
+            res.status(400).json('Error al dirigirse al get Crear Perfil')
         }
     })
 /////////Rutas para agregar y guardar un nuevo registro////
@@ -33,7 +31,7 @@ module.exports = async (app)=> {
             res.render('crearPerfil.ejs')
         }catch (err){
             console.log(err)
-            res.status(400).json('Error al dirigirse a la pagina CREAR')
+            res.status(400).json('Error al dirigirse a la pagina CREAR PERFIL')
         }
     })
 
@@ -42,9 +40,9 @@ module.exports = async (app)=> {
         try{
             let resultado = await controladorPerfile.guardarPerfil(data)
             if(resultado) {
-                res.redirect('/crearInfoInicio')
-                console.log('Usuario Agregado Correctamente');
-                // res.status(200).send({message: 'usuario agregado correctamente',data});
+                // res.redirect('/crearInfoInicio')
+                console.log('Perfil Agregado Correctamente');
+                res.status(200).send({message: 'usuario agregado correctamente',data});
             }
         }catch (err){
             res.status(400).send({message: 'No se pudo registrar el usuario'});
@@ -53,34 +51,35 @@ module.exports = async (app)=> {
     })
 
 /////////rutas para modificar un perfil
-    app.get('/editPerfil/:id', async (req,res)=>{
+    app.get('/editPerfil/:id', async (req,res)=>{//traemos la informacion
         let data = req.params.id;
         try {
             let resultado = await controladorPerfile.buscarPerfil(data)
             if(resultado){
-            res.render('crearPerfil.ejs', {result:resultado.dataValues })
-                // res.status(200).send({message: 'usuario '+data+' encontrado'});
+            // res.render('crearPerfil.ejs', {result:resultado.dataValues })
+                res.status(200).send({message: 'usuario encontrado',resultado});
             }else{
                 res.status(400).send({message: 'No se encontro id'});
             }
         }catch (err){
-            res.status(400).json('Error al dirigirse a la pagina EDITAR')
+            res.status(400).json('Error al dirigirse a la pagina EDITAR PERFIL')
         }
     })
 
-    app.post('/updatePerfil/:id', midd.verificacionUsuario, async (req, res)=>{
+    app.post('/editPerfil/:id', midd.verificacionUsuario, async (req, res)=>{
+        let id = req.params.id;
+        let data = req.body;
         try {
-            let resultado = await controladorPerfile.modificarPerfil(req.body);
-            if(resultado){
-                res.redirect('/perfil');
-            }
+            let resultado = await controladorPerfile.modificarPerfil(id, data);
+            res.status(200).send({message: 'perfil editado correctamente', resultado});
+            // res.redirect('/perfil');
         } catch (error) {
-            res.status(400).json('No se puedo modificar el usuarios')
+            res.status(400).json('No se puedo modificar el perfil')
         }
     });
 
 //////////////ruta para listar perfiles
-    app.get('/usuarios', midd.verificacionUsuario, async(req,res)=> {
+    app.get('/perfiles', midd.verificacionUsuario, async(req,res)=> {
         try {
             let resultado = await controladorPerfile.listarPerfiles()
             res.render('login/listaRegistro.ejs', {results:resultado});

@@ -1,25 +1,14 @@
 const InfoActual = require('../models/model.infoActual');
 
 /////////MODULOS PARA REGISTRO DE USUARIO///////
-module.exports.guardarUsuario = async (data)=>{
+module.exports.guardartablas = async (data)=>{
     try{
         //si ingreso todos los dato
-        if(data.nombres && data.apellidos && data.usuario && data.email && data.pass && data.imagen){ 
-            let resultado = await Usuarios.findOne({where:{usuario: data.usuario}})
-            if (resultado != null){
-                // return false; 
-                throw new Error ('Error el usuario ya existe')
-            }else {            
-                await InfoActual.create(({
-                    nombres: data.nombres,
-                    apellidos: data.apellidos,
-                    email: data.email,
-                    usuario: data.usuario,
-                    pass: data.pass,
-                    imagen: data.imagen}))
+        if(data != null){           
+                await InfoActual.create(({nombres: data.nombres }))
+                await InfoActual.create(({nombres: data.nombres }))
                 data.pass = undefined; //para que no se muestre la contraseña la hacer el SEND
                 return true;
-            }
         }else{
             throw new Error ('Envia todos los datos necesarios')
         }

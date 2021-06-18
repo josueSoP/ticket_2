@@ -4,7 +4,6 @@ let apellidos = document.getElementById('apellidos');
 let email = document.getElementById('email');
 let usuario = document.getElementById('usuario');
 let pass = document.getElementById('pass');
-let imagen = document.getElementById('imagen');
 let idData = document.getElementById('idUsuario')
 
 //Manda el post
@@ -26,7 +25,6 @@ form.addEventListener('submit', async (event) => {
             "email": email.value,
             "usuario": usuario.value,
             "pass": pass.value,
-            "imagen": imagen.value,
         })
     })
 
@@ -61,5 +59,4 @@ function newFormulario()
     email.value = ""
     usuario.value = ""
     pass.value = ""
-    imagen.value = ""
 }
