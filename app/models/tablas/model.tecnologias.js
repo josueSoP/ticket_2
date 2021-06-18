@@ -7,19 +7,19 @@ const sequelize = require('../../../db/db')
       primaryKey: true,
       autoIncrement: true,
     },
-    te_nodeJs: {
+    nodeJs: {
       type: DataTypes.INTEGER,
       allowNull: false
     },
-    te_frontend: {
+    frontend: {
       type: DataTypes.INTEGER,
       allowNull: false
     },
-    te_swagger: {
+    swagger: {
       type: DataTypes.INTEGER,
       allowNull: false
     },
-    te_JS: {
+    JS: {
       type: DataTypes.INTEGER,
       allowNull: false
     }

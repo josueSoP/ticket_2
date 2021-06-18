@@ -1,4 +1,4 @@
-const controladorInfo = require('../controllers/controller.infoInicio')
+const controladorInfo = require('../controllers/controller.info')
 // const midd = require('../../middleware/midd.verificacion');
 
 module.exports = async (app)=> {
@@ -15,9 +15,9 @@ module.exports = async (app)=> {
         try{
             let resultado = await controladorInfo.guardarTablas(data)
             if(resultado) {
-                res.redirect('/perfil')
+                // res.redirect('/perfil')
                 console.log('Tablas Agregadas Correctamente');
-                // res.status(200).send({message: 'usuario agregado correctamente',data});
+                res.status(200).send({message: 'Informacion guardada correctamente',data});
             }
         }catch (err){
             res.status(400).send({message: 'No se pudieron guardar las tablas'});
@@ -29,10 +29,10 @@ module.exports = async (app)=> {
     app.get('/editInfoTablas/:id', async (req,res)=>{
         let data = req.params.id;
         try {
-            let resultado = await controladorInfo.buscarPerfil(data)
+            let resultado = await controladorInfo.buscarTablas(data)
             if(resultado){
-            res.render('crearPerfil.ejs', {result:resultado.dataValues })
-                // res.status(200).send({message: 'usuario '+data+' encontrado'});
+                // res.render('crearPerfil.ejs', {result:resultado.dataValues })
+                res.status(200).send({message: 'informacion encontrada',resultado});
             }else{
                 res.status(400).send({message: 'No se encontro id'});
             }
@@ -41,25 +41,25 @@ module.exports = async (app)=> {
         }
     })
 
-    app.post('/updateInfoTablas/:id', async (req, res)=>{
+    app.post('/guardarInfoTablas/:id', async (req, res)=>{
+        let id = req.params.id;
+        let data = req.body;
         try {
-            let resultado = await controladorInfo.modificarPerfil(req.body);
-            if(resultado){
-                res.redirect('/perfil');
-            }
-        } catch (error) {
-            res.status(400).json('No se puedo modificar el perfil')
+            let resultado = await controladorInfo.modificarTablas(id, data);
+            res.status(200).send({message: 'perfil editado correctamente', resultado});
+        }catch (error) {
+            res.status(400).json('No se puedo editar la informacion')
         }
     });
 
 //////////////ruta para listar perfiles
-    app.get('/tablas', async(req,res)=> {
+    app.get('/listarTablas', async(req,res)=> {
         try {
-            let resultado = await controladorPerfile.listarPerfiles()
+            let resultado = await controladorInfo.listarPerfiles()
             res.render('login/listaRegistro.ejs', {results:resultado});
         }catch (err){
             console.log(err)
-            res.status(400).json('Error al dirigirse a la ruta vistas')
+            res.status(400).json('Error al dirigirse a la ruta listarTablas')
         }
     })
 

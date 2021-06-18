@@ -7,19 +7,19 @@ const sequelize = require('../../../db/db')
       primaryKey: true,
       autoIncrement: true,
     },
-    ep_github: {
+    github: {
       type: DataTypes.INTEGER,
       allowNull: false
     },
-    ep_trello: {
+    trello: {
       type: DataTypes.INTEGER,
       allowNull: false
     },
-    ep_slack: {
+    slack: {
       type: DataTypes.INTEGER,
       allowNull: false
     },
-    ep_agiles: {
+    agiles: {
       type: DataTypes.INTEGER,
       allowNull: false
     }

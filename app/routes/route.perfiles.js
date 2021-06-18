@@ -42,10 +42,10 @@ module.exports = async (app)=> {
             if(resultado) {
                 // res.redirect('/crearInfoInicio')
                 console.log('Perfil Agregado Correctamente');
-                res.status(200).send({message: 'usuario agregado correctamente',data});
+                res.status(200).send({message: 'Perfil agregado correctamente',data});
             }
         }catch (err){
-            res.status(400).send({message: 'No se pudo registrar el usuario'});
+            res.status(400).send({message: 'No se pudo registrar el perfil'});
             console.log('NO Agregado ');
         }
     })
@@ -56,7 +56,7 @@ module.exports = async (app)=> {
         try {
             let resultado = await controladorPerfile.buscarPerfil(data)
             if(resultado){
-            // res.render('crearPerfil.ejs', {result:resultado.dataValues })
+                // res.render('crearPerfil.ejs', {result:resultado.dataValues })
                 res.status(200).send({message: 'usuario encontrado',resultado});
             }else{
                 res.status(400).send({message: 'No se encontro id'});
@@ -79,13 +79,13 @@ module.exports = async (app)=> {
     });
 
 //////////////ruta para listar perfiles
-    app.get('/perfiles', midd.verificacionUsuario, async(req,res)=> {
+    app.get('/listarPerfiles', midd.verificacionUsuario, async(req,res)=> {
         try {
             let resultado = await controladorPerfile.listarPerfiles()
             res.render('login/listaRegistro.ejs', {results:resultado});
         }catch (err){
             console.log(err)
-            res.status(400).json('Error al dirigirse a la ruta vistas')
+            res.status(400).json('Error al dirigirse a la ruta listarPerfiles')
         }
     })
 

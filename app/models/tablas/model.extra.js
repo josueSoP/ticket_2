@@ -1,21 +1,13 @@
 const {DataTypes, Model} = require('sequelize')
 const sequelize = require('../../../db/db')
-  
-  const Desempeno = sequelize.define('desempeno', {
+
+  const Extra = sequelize.define('extra', {
     id : {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
-    },
-    calidadCod: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
-    velEntrega: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
-    performanceCod: {
+    },  
+    conExtra: {
       type: DataTypes.INTEGER,
       allowNull: false
     }
@@ -23,4 +15,4 @@ const sequelize = require('../../../db/db')
     timestamps: true
   })
 
-  module.exports = Desempeno
+  module.exports = Extra

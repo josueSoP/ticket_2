@@ -7,27 +7,27 @@ const sequelize = require('../../../db/db')
       primaryKey: true,
       autoIncrement: true,
     },
-    hb_enfocado: {
+    enfocado: {
       type: DataTypes.INTEGER,
       allowNull: false
     },
-    hb_trabajoEq: {
+    trabajoEq: {
       type: DataTypes.INTEGER,
       allowNull: false
     },
-    hb_comprometido: {
+    comprometido: {
       type: DataTypes.INTEGER,
       allowNull: false
     },
-    hb_comunicacion: {
+    comunicacion: {
       type: DataTypes.INTEGER,
       allowNull: false
     },
-    hb_aprendizaje: {
+    aprendizaje: {
       type: DataTypes.INTEGER,
       allowNull: false
     },
-    hb_resProblem: {
+    resProblem: {
       type: DataTypes.INTEGER,
       allowNull: false
     }
