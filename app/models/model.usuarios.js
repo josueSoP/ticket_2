@@ -6,13 +6,13 @@ module.exports = class Datos {
     this.datos = datos
 }
 
-/////MODULO PARA LISTAR USUARIOSS///////////
+////////////// FUNCION PARA LISTAR USUARIOSS ////////////////
   static async listar (){
     let resultado = await sequelize.query('SELECT * FROM usuarios')
     return resultado[0]
   }
 
-  /////////FUNCION PARA REGISTRAR UN USUARIO///////
+////////////// FUNCION PARA REGISTRAR UN USUARIO ///////////
   static async guardarUser (data){
     let usuarioNuevo = [ data.nombres, data.apellidos, data.usuario, data.email, data.pass,
       data.imagen, data.ciudad, data.pais, data.edad, data.estudios,data.linkedin,data.hobies, data.cv]
@@ -43,7 +43,7 @@ module.exports = class Datos {
     }
   }
 
-////////////// FUNCION PARA MODIFICAR UN USUARIOS ///////////////////
+////////////// FUNCION PARA MODIFICAR UN USUARIOS ///////////
   static async buscarId (data){
     let usuarioUpdate = [ data ]
     try {
@@ -73,6 +73,7 @@ module.exports = class Datos {
     }
   }
 
+////////////// FUNCION PARA ELIMINAR UN USUARIOS ///////////
   static async deleteUser (data){
     let eliminarUser = [ data ]
     try {
