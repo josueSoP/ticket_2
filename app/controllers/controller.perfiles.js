@@ -4,11 +4,9 @@ const Perfiles = require('../models/model.perfiles');
 module.exports.guardarPerfil = async (data)=>{
     try{
         //si ingreso todos los dato
-        if(data.imagen && data.nombres && data.apellidos && data.ciudad && data.pais && data.edad && data.estudios && data.idiomas){ 
+        if(data.imagen && data.ciudad && data.pais && data.edad && data.estudios && data.idiomas){ 
             await Perfiles.create(({
                 imagen: data.imagen,
-                nombres: data.nombres,
-                apellidos: data.apellidos,
                 ciudad: data.ciudad,
                 pais: data.pais,
                 edad: data.edad,
@@ -42,8 +40,6 @@ module.exports.modificarPerfil = async (id, data) => {
     try {
         await Perfiles.update({
             imagen: data.imagen,
-            nombres: data.nombres,
-            apellidos: data.apellidos,
             ciudad: data.ciudad,
             pais: data.pais,
             edad: data.edad,
