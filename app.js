@@ -5,11 +5,12 @@ require('dotenv').config();
 
 //carga de rutas
 const sequelize = require('./db/db');
-const rutaUsuarios = require('./app/routes/route.usuarios');
-const rutaFollow = require('./app/routes/route.follow');
-// const rutaPublicaciones = require('./app/routes/route.publicaciones');
-const rutaPerfiles = require('./app/routes/route.perfiles');
+// const rutaAmigos = require('./app/routes/route.amigos');
+// const rutaComentarios = require('./app/routes/route.comentarios');
 const rutaInfo = require('./app/routes/route.info');
+const rutaLogin = require('./app/routes/route.login');
+// const rutaSolicitud = require('./app/routes/route.solicitud');
+const rutaUsuarios = require('./app/routes/route.usuarios');
 
 //middlewares
 app.use(express.json())
@@ -31,11 +32,12 @@ app.use((err, req, res, next)=> {
 //cors
 
 //rutas o vistas
-rutaUsuarios(app);
-rutaFollow(app);
-// rutaPublicaciones(app);
-rutaPerfiles(app);
+// rutaAmigos(app);
+// rutaComentarios(app);
 rutaInfo(app);
+rutaLogin(app);
+// rutaSolicitud(app);
+rutaUsuarios(app);
 
 
 //Iniciar el Servidor

@@ -1,27 +1,24 @@
-const Usuarios = require('../models/model.usuarios');
+const modelLogin = require('../models/model.login')
 const jwt = require('jsonwebtoken');
 const secret = process.env.SECRET_KEY;
 
 //////////MODULOS PARA LOGIN ///////////
-module.exports.chequearUsuario = async (usr)=>{
-    let usrchk = usr
+module.exports.chequearUsuario = async (user)=>{
     try {
-        let resultado =  await Usuarios.existenciaDeUsuario(usrchk)
+        let resultado =  await modelLogin.existenciaUsuario(user)
         if (resultado) {
-            let result =  await Usuarios.usuarioAutenticado(usrchk)
-            return result
+            return resultado
         }else {
-            throw new Error ('Contraseña Incorrecta')
+            return false
         }
     }catch (err){
-        throw new Error ('No existe el usuario o la ontraseña es incorrecta')
+        throw new Error ('Catch en el controlador chequearUsuario')
     }
 }
 
-module.exports.datosUsuario = async (usr) => {
-    let dataUser = usr
+module.exports.datosUsuario = async (user) => {
     try {
-        let resultado =  await Usuarios.recuperarInfoUser(dataUser)
+        let resultado =  await modelLogin.recuperarInfoUser(user)
         if (resultado) {
             return resultado
         }else {
@@ -29,18 +26,17 @@ module.exports.datosUsuario = async (usr) => {
         }
     }catch (err){
         console.log(err)
-        throw new Error (' no semuy bien que paso')
+        throw new Error ('Catch controlador datosUsuario')
     }
 }
 
-module.exports.generaToken = async (data)=>{
+module.exports.generaToken = async (data) => {
     try {
-        let resultado = jwt.sign({
-            exp: Math.floor(Date.now() / 1000) + (60 * 60), data}, secret)
-        data.pass = undefined; //para que no se muestre la contraseña la hacer el SEND
+        let resultado = jwt.sign( {data}, secret )
+        // data.pass = undefined; //para que no se muestre la contraseña la hacer el SEND
         return resultado
-    }catch (err){
+    } catch (err) {
         console.log(err)
-        throw new Error (err)
+        throw new Error(err)
     }
 }

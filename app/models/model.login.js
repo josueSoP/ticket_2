@@ -4,35 +4,38 @@ module.exports = class Datos {
   //constructor
   constructor (datos) {
     this.datos = datos
-}
+  }
 
-// ////////MODULOS PARA LOGIN//////////////////
-// static async existenciaDeUsuario (usr){
-//   let resultado = await Usuarios.findOne({where: {usuario:usr.usuario, pass: usr.pass}})
-//   if (resultado === null){
-//       return false
-//   }else {
-//       return true
-//   }
-//   }
+///////// FUNCIONES PARA CHECAR EXISTECIA DE USUARIO //////////////////
+  static async existenciaUsuario(data) {
+    let usuarioUpdate = [data.usuario, data.pass]
+    try {
+        let resultado = await sequelize.query(`SELECT * FROM usuarios WHERE usuario = ? AND pass = ?`,
+            { replacements: usuarioUpdate, type: sequelize.QueryTypes.SELECT })
+        if (resultado[0] === undefined) {
+            return false
+        }else {
+            return true
+        }
+    } catch (error) {
+        throw new Error('Ocurrio un error en el model existenciaDeUsuario')
+    }
+  }
 
-// module.exports.usuarioAutenticado = async (usr)=>{
-//   //chequear con la base de datos que exista el usuario
-//   let resultado = await Usuarios.findOne({where: {usuario:usr.usuario, pass: usr.pass}})
-//   if (resultado === null){
-//       return false
-//   }else {
-//       return true
-//   }
-// }
+  static async recuperarInfoUser(data) {
+    let usuarioUpdate = [ data.usuario, data.pass ]
 
-// module.exports.recuperarInfoUser = async (usr) => {
-//   let resultado = await Usuarios.findAll({where: {usuario:usr.usuario, pass: usr.pass}})
-//   if (resultado === null){
-//     return false
-//   }else {
-//     return resultado[0]
-//   }
-// }
+    try {
+        let resultado = await sequelize.query(`SELECT * FROM usuarios WHERE usuario = ? AND pass = ?`,
+            { replacements: usuarioUpdate, type: sequelize.QueryTypes.SELECT })
+        if (resultado[0] === undefined) {
+            return false
+        } else {
+            return resultado [0]
+        }
+    } catch (error) {
+        throw new Error('Ocurrio un error model recuperarInfoUser')
+    }
+  }
 
 }
