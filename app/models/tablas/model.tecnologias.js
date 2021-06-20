@@ -6,7 +6,7 @@ module.exports = class Datos {
     this.datos = datos
   }
 
-////////////// FUNCION PARA LISTAR USUARIOSS ////////////////
+////////////// FUNCION PARA LISTAR TECNOLOGIAS ////////////////
   static async listar (){
     let resultado = await sequelize.query('SELECT * FROM tecnologias')
     return resultado[0]

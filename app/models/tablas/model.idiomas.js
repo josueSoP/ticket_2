@@ -6,9 +6,9 @@ module.exports = class Datos {
     this.datos = datos
   }
 
-////////////// FUNCION PARA LISTAR CONOCIMIENTOS EXTRA ////////////////
+////////////// FUNCION PARA LISTAR TECNOLOGIAS ////////////////
   static async listar (){
-    let resultado = await sequelize.query('SELECT * FROM extras')
+    let resultado = await sequelize.query('SELECT * FROM idiomas')
     return resultado[0]
   }
 

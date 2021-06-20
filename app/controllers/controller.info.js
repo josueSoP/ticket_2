@@ -4,17 +4,19 @@ const Desempeno = require('../models/tablas/model.desempeno');
 const Blandas = require('../models/tablas/model.blandas');
 const Entornos = require('../models/tablas/model.entornos');
 const Extra = require('../models/tablas/model.extra');
+const Idiomas = require('../models/tablas/model.idiomas');
 
 //////////// MODULO PARA LISTAR TABLAS ////////////
 module.exports.listarInfoTablas = async ()=>{
     try {
         let resCono = await Conocimientos.listar()
         let resTecno = await Tecnologias.listar()
-        // let resDesem = await Desempeno.listarDesempeno()
-        // let resBlandas = await Blandas.listarBlandas()
-        // let resEntorn = await Entornos.listarBlandas()
-        // let resExtra = await Extra.listarBlandas()
-        let resultado = {resCono, resTecno}
+        let resDesem = await Desempeno.listar()
+        let resBlandas = await Blandas.listar()
+        let resEntorn = await Entornos.listar()
+        let resExtra = await Extra.listar()
+        let resIdiomas = await Idiomas.listar()
+        let resultado = {resCono, resTecno, resDesem, resBlandas, resEntorn, resExtra,resIdiomas}
         return resultado
         
     }catch (err){
