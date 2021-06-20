@@ -1,82 +1,34 @@
-const Usuarios = require('../models/model.usuarios');
-const jwt = require('jsonwebtoken');
-const secret = process.env.SECRET_KEY;
+const modelUsuarios = require('../models/model.usuarios');
 
-//////////MODULOS PARA LOGIN ///////////
-module.exports.chequearUsuario = async (usr)=>{
-    let usrchk = usr
+//funcion para checar que usuario no exista al dar de alta
+module.exports.existenciaUsuario = async (data) => {
     try {
-        let resultado =  await Usuarios.existenciaDeUsuario(usrchk)
+        let resultado = await modelUsuarios.existenciaUser(data)
         if (resultado) {
-            let result =  await Usuarios.usuarioAutenticado(usrchk)
-            return result
-        }else {
-            throw new Error ('Contraseña Incorrecta')
-        }
-    }catch (err){
-        throw new Error ('No existe el usuario o la ontraseña es incorrecta')
-    }
-}
-
-module.exports.datosUsuario = async (usr) => {
-    let dataUser = usr
-    try {
-        let resultado =  await Usuarios.recuperarInfoUser(dataUser)
-        if (resultado) {
+            return true 
+        } else {
             return resultado
-        }else {
-            throw new Error ('No hay datos de Usuario')
         }
-    }catch (err){
+    } catch (err) {
         console.log(err)
-        throw new Error (' no semuy bien que paso')
+        throw new Error('no semuy bien que paso')
     }
 }
 
-module.exports.generaToken = async (data)=>{
-    try {
-        let resultado = jwt.sign({
-            exp: Math.floor(Date.now() / 1000) + (60 * 60), data}, secret)
-        data.pass = undefined; //para que no se muestre la contraseña la hacer el SEND
-        return resultado
-    }catch (err){
-        console.log(err)
-        throw new Error (err)
-    }
-}
-
-/////////MODULOS PARA REGISTRO DE USUARIO///////
 module.exports.guardarUsuario = async (data)=>{
-    try{
-        //si ingreso todos los dato
-        if(data.nombres && data.apellidos && data.usuario && data.email && data.pass){ 
-            let resultado = await Usuarios.findOne({where:{usuario: data.usuario}})
-            if (resultado != null){
-                // return false; 
-                throw new Error ('Error el usuario ya existe')
-            }else {            
-                await Usuarios.create(({
-                    nombres: data.nombres,
-                    apellidos: data.apellidos,
-                    email: data.email,
-                    usuario: data.usuario,
-                    pass: data.pass}))
-                data.pass = undefined; //para que no se muestre la contraseña la hacer el SEND
-                return true;
-            }
-        }else{
-            throw new Error ('Envia todos los datos necesarios')
-        }
-    }catch (err){
-        console.log(err)
-        throw new Error ('No pude guardar')
+    try {
+        let resultado = await modelUsuarios.guardarUser(data)
+        return resultado
+    } catch (err) {
+        console.log('Error controlador' + err)
+        throw new Error('Error en el controlador Crear usuario')
     }
 }
 
 ////// MODULOS PARA LISTAR USUARIOS REGISTRADOS //////////
 module.exports.listarRegistros = async ()=>{
     try {
-        let resultado = await Usuarios.listar()
+        let resultado = await modelUsuarios.listar()
         return resultado
         
     }catch (err){
@@ -85,42 +37,32 @@ module.exports.listarRegistros = async ()=>{
     }
 } 
 
-// ////////////MODULOS PARA MODIFICAR USUARIO//////////////
-//Seleccionar un solo registro por su ID para poderlo modificar
-module.exports.buscarRegistro = async (data)=>{
+//////////////MODULOS PARA MODIFICAR USUARIO//////////////
+module.exports.buscarUsuario = async (data)=>{
     try {
-        let resultado = await Usuarios.buscarId(data)
+        let resultado = await modelUsuarios.buscarId(data)
         return resultado
     }catch (err) {
         throw new Error ('Ocurrio un problema en el controlador al BUSCAR usuario')
     }
 }
 
-//guardar modificacion
-module.exports.modificarUsuario = async (id, data) => {
+module.exports.actualizarUsuario = async (id, data) => {
     try {
-        await Usuarios.update({
-            nombres: data.nombres, 
-            apellidos: data.apellidos, 
-            email: data.email, 
-            usuario: data.usuario, 
-            pass: data.pass}, 
-            {where: { id : id} })
-        let result = await Usuarios.findOne({where: {id: id} })
-        return result;
+        let resultado = await modelUsuarios.actualizarUser(id,data)
+        return resultado
     }catch (err){
         throw new Error ('No se pudo actualizar el producto seleccionado')
     }
 }
 
- ///////////MODULO PARA ELIMINAR UN REGISTRO ////////////
-module.exports.eliminarRegistro = async (data) => {
+//  ///////////MODULO PARA ELIMINAR UN REGISTRO ////////////
+module.exports.eliminarUsuario = async (data) => {
     try {
-        await Usuarios.destroy({
-            where: { id : data}
-        })
-        return true;
+        let resultado = await modelUsuarios.deleteUser(data)
+        return resultado
     }catch (err){
-        throw new Error ('No se pudo eliminar el usuario seleccionado')
+        throw new Error ('Error en el controlador eliminarUsuario')
     }
+
 };

@@ -11,14 +11,6 @@ const Perfiles = sequelize.define('perfiles', {
       type: DataTypes.STRING(50),
       allowNull: false,
   },
-  nombres : {
-      type: DataTypes.STRING(50),
-      allowNull: false,
-  },
-  apellidos: {
-      type: DataTypes.STRING(50),
-      allowNull: false,
-  },
   ciudad: {
     type: DataTypes.STRING(50),
     allowNull: false,

@@ -2,7 +2,7 @@ const {DataTypes, Model} = require('sequelize')
 const sequelize = require('../../db/db')
 
 //Definir mi Modelo con que voy a trabajar
-const Follow = sequelize.define('seguidores', {
+const Follow = sequelize.define('follows', {
     id : {
       type: DataTypes.INTEGER,
       primaryKey: true,
