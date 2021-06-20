@@ -11,17 +11,6 @@ const rutaFollow = require('./app/routes/route.follow');
 const rutaPerfiles = require('./app/routes/route.perfiles');
 const rutaInfo = require('./app/routes/route.info');
 
-// const Usuarios = require('./app/models/model.usuarios');
-// const Follow = require('./app/models/model.follow');
-// const Publicaciones = require('./app/models/model.publicaciones');
-// const Perfiles = require('./app/models/model.perfiles');
-// const Conocimientos = require('./app/models/tablas/model.conocimientos');
-// const Tecnologias = require('./app/models/tablas/model.tecnologias');
-// const Desempeno = require('./app/models/tablas/model.desempeno');
-// const Blandas = require('./app/models/tablas/model.blandas');
-// const Entornos = require('./app/models/tablas/model.entornos');
-// const Extra = require('./app/models/tablas/model.extra');
-
 //middlewares
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
@@ -41,7 +30,6 @@ app.use((err, req, res, next)=> {
 
 //cors
 
-
 //rutas o vistas
 rutaUsuarios(app);
 rutaFollow(app);
@@ -49,29 +37,10 @@ rutaFollow(app);
 rutaPerfiles(app);
 rutaInfo(app);
 
+
 //Iniciar el Servidor
 async function inicioServidor() {
     try {
-        // await Conocimientos.sync({alter:true});        
-        // await Tecnologias.sync({alter:true});        
-        // await Desempeno.sync({alter:true});        
-        // await Blandas.sync({alter:true});        
-        // await Entornos.sync({alter:true});        
-        // await Extra.sync({alter:true});        
-        // await Perfiles.sync({alter:true});        
-        // await Follow.sync({alter:true});        
-        // await Publicaciones.sync({alter:true}); 
-        // await Usuarios.sync({alter:true});
-        
-        // await Usuarios.findOrCreate({
-        //     where: {
-        //         nombres: 'josue', 
-        //         apellidos: 'soto', 
-        //         email: 'josue@mail.com', 
-        //         usuario: 'josu', 
-        //         pass: 'jo123'
-        //     }
-        // })
         await sequelize.authenticate();
         console.log('Conexion con la DB correcta!')
         app.listen(process.env.PORT, function (){

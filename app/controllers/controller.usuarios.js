@@ -1,6 +1,18 @@
 const modelUsuarios = require('../models/model.usuarios');
 
-//funcion para checar que usuario no exista al dar de alta
+//////////// MODULO PARA LISTAR USUARIOS ////////////
+module.exports.listarRegistros = async ()=>{
+    try {
+        let resultado = await modelUsuarios.listar()
+        return resultado
+        
+    }catch (err){
+        console.log('Error de modelos' + err)
+        throw new Error ('Ocurrio un problema en el controlador listar usuarios')
+    }
+} 
+
+//////////// MODULOS PARA CREAR USUARIOS ////////////
 module.exports.existenciaUsuario = async (data) => {
     try {
         let resultado = await modelUsuarios.existenciaUser(data)
@@ -25,19 +37,7 @@ module.exports.guardarUsuario = async (data)=>{
     }
 }
 
-////// MODULOS PARA LISTAR USUARIOS REGISTRADOS //////////
-module.exports.listarRegistros = async ()=>{
-    try {
-        let resultado = await modelUsuarios.listar()
-        return resultado
-        
-    }catch (err){
-        console.log('Error de modelos' + err)
-        throw new Error ('Ocurrio un problema en el controlador listar usuarios')
-    }
-} 
-
-//////////////MODULOS PARA MODIFICAR USUARIO//////////////
+//////////// MODULOS PARA MODIFICAR USUARIO //////////
 module.exports.buscarUsuario = async (data)=>{
     try {
         let resultado = await modelUsuarios.buscarId(data)
@@ -56,7 +56,7 @@ module.exports.actualizarUsuario = async (id, data) => {
     }
 }
 
-//  ///////////MODULO PARA ELIMINAR UN REGISTRO ////////////
+// ///////// MODULO PARA ELIMINAR UN REGISTRO ////////
 module.exports.eliminarUsuario = async (data) => {
     try {
         let resultado = await modelUsuarios.deleteUser(data)
