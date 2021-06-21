@@ -15,15 +15,38 @@ const upload = multer({ storage: almacena})
 
 module.exports = async (app)=> {       
 
-///////// RUTA PARA IR AL PERFIL DEL USUARIO ///////////////////////
-    app.get('/perfil',  async (req,res)=>{
-        try{
-            res.render('perfil.ejs')
+///////// RUTAs PARA IR AL PERFIL DE UN USUARIO ///////////////////////
+    app.get('/miPerfil/:id_usuarios', async (req,res)=>{
+        let data = req.params.id_usuarios;
+        try {
+            let resultado = await controladorUsuarios.buscarUsuario(data)
+            if(resultado){
+                res.render('miPerfil.ejs', {result:resultado })
+                // res.status(200).send({message: 'usuario  encontrado', resultado});
+            }else{
+                res.status(400).send({message: 'No se encontro id'});
+            }
+
         }catch (err){
-            console.log(err)
-            res.status(400).json('Error al dirigirse a la pagina PERFIL')
+            res.status(400).json('Error al dirigirse a la pagina EDITAR')
         }
     })
+
+    app.get('/verTecler/:id_usuarios', async (req,res)=>{
+        let data = req.params.id_usuarios;
+        try {
+            let resultado = await controladorUsuarios.buscarUsuario(data)
+            if(resultado){
+                res.render('verTecler.ejs', {result:resultado })
+                // res.status(200).send({message: 'usuario  encontrado', resultado});
+            }else{
+                res.status(400).send({message: 'No se encontro id'});
+            }
+        }catch (err){
+            res.status(400).json('Error al dirigirse a la pagina EDITAR')
+        }
+    })
+    
 ////////////// RUTA PARA LISTAR USUARIOS //////////////////////////////
     app.get('/usuarios', async(req,res)=> {
         try {
@@ -48,7 +71,6 @@ module.exports = async (app)=> {
     })
 
     app.post('/registro', async (req,res)=>{
-        console.log(req.file) 
         let data = req.body
         try{
             let resultado = await controladorUsuarios.existenciaUsuario(data)

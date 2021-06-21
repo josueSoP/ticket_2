@@ -1,6 +1,6 @@
 <%- include("cabeceras/plantillas.ejs",{tituloWeb:'Crear un Perfil'}) %>
 <body>
-    <form action="/registro" class="formPerfil" method="post" id="formPerfil" enctype="multipart/form-data"> <!-- novalidate> -->
+    <form class="form" method="post" id="nuevoPerfil" > <!-- novalidate> -->
     <hr>
     <div class="container bootstrap snippet">
         <div class="row">
@@ -105,7 +105,7 @@
                     <div class="form-group">  
                         <div class="col-xs-6">
                             <label for="hobies"><h4>Hobies</h4></label>
-                            <textarea required type="body" class="form-control" name="hobies" id="hobies" placeholder="Escribe algun hobie" ></textarea>
+                            <input required type="text" class="form-control" name="hobies" id="hobies" placeholder="Escribe algun hobie" ></textarea>
                         </div>
                     </div>
 
@@ -122,8 +122,8 @@
     </div>
     </form>
 
-    <script src="js/verImagen.js"></script>
     <script src="js/registrar.js"></script>
+    <script src="js/verImagen.js"></script>
   
 </body>
 </html>
