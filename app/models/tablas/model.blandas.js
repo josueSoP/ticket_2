@@ -12,4 +12,17 @@ module.exports = class Datos {
     return resultado[0]
   }
 
+
+////////////// FUNCION PARA GUARDAR INFORMACION TABLA BLANDAS ///////////
+  static async guardar(data){
+    let usuarioNuevo = [ data.enfocado, data.trabajoEq, data.comprometido, data.comunicacion, data.aprendizaje, data.resProblem ]
+    try {
+      await sequelize.query(`INSERT INTO blandas (enfocado, trabajoEq, comprometido, comunicacion, aprendizaje,resProblem) VALUES (?,?,?,?,?,?)`,
+      {replacements : usuarioNuevo, type: sequelize.QueryTypes.SELECT})
+      return true
+    }catch (err){
+      console.log(err)
+      throw new Error ('No pude guardar')
+    }
+  }
 }

@@ -15,30 +15,35 @@ module.exports = async (app)=> {
         }
     })
 
-}
 // ///////////// RUTAS PARA AGREGAR Y GUARDAR TABLAS //////////////////
-//     app.get('/crearInfoTablas', async (req,res)=>{
-//         try{
-//             res.render('infoTablas.ejs');
-//         }catch (err){
-//             res.estatus(400).json('No se puede mostrar get infoTablas')
-//         }
-//     })
+    app.get('/crearInfoTablas', async (req,res)=>{
+        try{
+            res.render('infoTablas.ejs');
+        }catch (err){
+            res.estatus(400).json('No se puede mostrar get infoTablas')
+        }
+    })
 
-//     app.post('/guardarInfotablas', async (req,res)=>{
-//         data = req.body
-//         try{
-//             let resultado = await controladorInfo.guardarTablas(data)
-//             if(resultado) {
-//                 // res.redirect('/perfil')
-//                 console.log('Tablas Agregadas Correctamente');
-//                 res.status(200).send({message: 'Informacion guardada correctamente',data});
-//             }
-//         }catch (err){
-//             res.status(400).send({message: 'No se pudieron guardar las tablas'});
-//             console.log('NO se agrego informacion ');
-//         }
-//     })
+    app.post('/guardarInfotablas', async (req,res)=>{
+        data = req.body
+        try{
+            let resultado = await controladorInfo.guardarTablas(data)
+            if(resultado) {
+                // res.redirect('/perfil')
+                console.log('Tablas Agregadas Correctamente');
+                res.status(200).send({message: 'Informacion guardada correctamente',data});
+            }
+        }catch (err){
+            res.status(400).send({message: 'No se pudieron guardar las tablas'});
+            console.log('NO se agrego informacion ');
+        }
+    })
+
+    
+}
+
+
+
 
 // ////////////// RUTAS PARA MODIFICAR USUARIO ///////////////////////
 //     app.get('/buscar/:id_usuarios', async (req,res)=>{

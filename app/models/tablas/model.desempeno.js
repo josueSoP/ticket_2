@@ -12,4 +12,17 @@ module.exports = class Datos {
     return resultado[0]
   }
 
+////////////// FUNCION PARA GUARDAR INFORMACION TABLA DESEMENOS ///////////
+  static async guardar(data){
+    let usuarioNuevo = [ data.calidadCod, data.velEntrega, data.performanceCod ]
+    try {
+      await sequelize.query(`INSERT INTO desempenos (calidadCod, velEntrega, performanceCod) VALUES (?,?,?)`,
+      {replacements : usuarioNuevo, type: sequelize.QueryTypes.SELECT})
+      return true
+    }catch (err){
+      console.log(err)
+      throw new Error ('No pude guardar')
+    }
+  }
+
 }

@@ -12,4 +12,17 @@ module.exports = class Datos {
     return resultado[0]
   }
 
+////////////// FUNCION PARA GUARDAR INFORMACION TABLA ENTORNOS ///////////
+  static async guardar(data){
+    let usuarioNuevo = [ data.github, data.trello, data.slack, data.agiles ]
+    try {
+      await sequelize.query(`INSERT INTO entornos (github, trello, slack, agiles) VALUES (?,?,?,?)`,
+      {replacements : usuarioNuevo, type: sequelize.QueryTypes.SELECT})
+      return true
+    }catch (err){
+      console.log(err)
+      throw new Error ('No pude guardar')
+    }
+  }
+
 }
