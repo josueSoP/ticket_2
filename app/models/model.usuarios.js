@@ -17,7 +17,7 @@ module.exports = class Datos {
     let usuarioNuevo = [ data.nombres, data.apellidos, data.usuario, data.email, data.pass,
       data.imagen, data.ciudad, data.pais, data.edad, data.estudios,data.linkedin,data.hobies, data.cv]
     try {
-      let resultado = await sequelize.query(`INSERT INTO usuarios(
+      await sequelize.query(`INSERT INTO usuarios(
         nombres,apellidos,usuario,email,pass,imagen,ciudad,pais,edad,estudios,linkedin,hobies,cv) 
         VALUES (?,?,?,?,?, ?,?,?,?,?,?,?,?)`,
       {replacements : usuarioNuevo, type: sequelize.QueryTypes.SELECT})

@@ -1,14 +1,35 @@
 const controladorUsuarios = require('../controllers/controller.usuarios')
 const midd = require('../../middleware/midd.verificacion');
+//para imagen
+var multer = require ('multer');
+// require('console-png').attachTo(console);
+const almacena = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, './uploads')
+    },
+    filename: function (req, file, cb) {
+      cb(null, `${Date.now()}-${file.originalname}`)
+    }
+  })
+const upload = multer({ storage: almacena})
 
 module.exports = async (app)=> {       
 
+///////// RUTA PARA IR AL PERFIL DEL USUARIO ///////////////////////
+    app.get('/perfil',  async (req,res)=>{
+        try{
+            res.render('perfil.ejs')
+        }catch (err){
+            console.log(err)
+            res.status(400).json('Error al dirigirse a la pagina PERFIL')
+        }
+    })
 ////////////// RUTA PARA LISTAR USUARIOS //////////////////////////////
     app.get('/usuarios', async(req,res)=> {
         try {
             let resultado = await controladorUsuarios.listarRegistros()
-            // res.render('login/listaRegistro.ejs', {results:resultado});
-            res.status(200).send({ resultado});
+            res.render('usuarios.ejs', {results:resultado});
+            // res.status(200).send({ resultado});
 
         }catch (err){
             console.log(err)
@@ -19,7 +40,7 @@ module.exports = async (app)=> {
 ///////// RUTAS PARA AGREGAR Y GUARDAR USUARIOS ///////////////////////
     app.get('/crear',  async (req,res)=>{
         try{
-            res.render('login/registro.ejs')
+            res.render('registrar.ejs')
         }catch (err){
             console.log(err)
             res.status(400).json('Error al dirigirse a la pagina CREAR')
@@ -27,6 +48,7 @@ module.exports = async (app)=> {
     })
 
     app.post('/registro', async (req,res)=>{
+        console.log(req.file) 
         let data = req.body
         try{
             let resultado = await controladorUsuarios.existenciaUsuario(data)
@@ -50,8 +72,8 @@ module.exports = async (app)=> {
         try {
             let resultado = await controladorUsuarios.buscarUsuario(data)
             if(resultado){
-                // res.render('login/editaRegistro.ejs', {result:resultado.dataValues })
-                res.status(200).send({message: 'usuario  encontrado', resultado});
+                res.render('editaRegistro.ejs', {result:resultado })
+                // res.status(200).send({message: 'usuario  encontrado', resultado});
             }else{
                 res.status(400).send({message: 'No se encontro id'});
             }
@@ -88,5 +110,17 @@ module.exports = async (app)=> {
         }catch (err){
             res.status(400).json('No se puedo eliminar el usuario')
         }
+    })
+
+///////////////////// SUBIR IMAGEN ////////////////////////////
+    app.get('/archivo', (req, res) => {
+        res.render('imagen.ejs')
+    })
+
+    // let dobleInput = upload.fields([{ name: 'imagen', maxCount: 1 }, { name: 'cv' }])
+    // app.post('/registro', dobleInput, async (req,res)=>{
+    app.post('/subir', upload.single('imagen'), (req, res) => {
+        console.log(req.file) // Nos devuelve un objeto con la información de nuestro archivo
+        res.send('Archivo subido correctamente')
     })
 }

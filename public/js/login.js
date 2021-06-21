@@ -3,11 +3,11 @@ let user = document.getElementById('usuario');
 let pass = document.getElementById('pass');
 
 class Usuarios {
-    constructor(user, pass){
+    constructor(){
         this.id = "",
         this.nombre = "",
-        this.email = "",
         this.user = "",
+        this.email = "",
         this.token = ""
     }
 
@@ -36,18 +36,19 @@ form.addEventListener('submit', async (event) => {
             "pass": pass.value
         })
     })
-    let vuelta = await resultado.json();
-    if(vuelta.error){
+    let recupera = await resultado.json();
+    if(recupera.error){
         swal({
-            title: `${vuelta.error}`,
+            title: `${recupera.error}`,
             icon: "error",
           });
     } else {
         let data = await Usuarios.recuperaUsuario();
-        data.user = vuelta.user.usuario;
-        data.id = vuelta.user.id;
-        data.email = vuelta.user.email;
-        data.nombre = vuelta.user.nombres + " " + vuelta.user.apellidos;
+        data.user = recupera.user.usuario;
+        data.id = recupera.user.id_usuarios;
+        data.email = recupera.user.email;
+        data.nombre = recupera.user.nombres + " " + recupera.user.apellidos;
+        data.token = recupera.token;
         Usuarios.guardaUsuario(data);
             location.href = '/perfil'
     }
