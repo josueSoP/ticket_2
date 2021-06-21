@@ -4,7 +4,7 @@ module.exports = async (app)=> {
     //////////// LOGIN DE USUARIOS /////////////////////////
     app.get('/login', async (req,res)=>{
         try{
-            res.render('login/login.ejs');
+            res.render('login.ejs');
         }catch (err){
             res.estatus(400).json('No se puede mostrar login GET')
         }
@@ -17,10 +17,10 @@ module.exports = async (app)=> {
             if (resultado) {
                 let usuarioInfo = await controllerLogin.datosUsuario(usuario)
                 let tokenResult = await controllerLogin.generaToken(usuario)
-                res.status(200).send({tokenResult, message: 'usuario y contraseña valido',usuarioInfo});
-                // res.json({ token: tokenResult, user: usuarioInfo })
+                // res.status(200).send({tokenResult, message: 'usuario y contraseña valido',usuarioInfo});
+                res.json({ token: tokenResult, user: usuarioInfo })
             } else {
-                res.status(400).send({message: 'Usuario o Contraseña Incorrecta'});
+                throw new Error ("Usuario o Contraseña Incorrecta")
             }
         } catch (err) {
             console.log(err)

@@ -1,0 +1,130 @@
+<%- include("cabeceras/plantillas.ejs",{tituloWeb:'Editar mis Datos'}) %>
+<body>
+    <h3 class="p-3 text-center"><span id="idUsuario"><%= result.id_usuarios%> - </span> <%= result.nombres %> </h3>
+    <form action="/registro" class="formPerfil" method="post" id="formPerfil" enctype="multipart/form-data"> <!-- novalidate> -->
+    <hr>
+    <div class="container bootstrap snippet">
+        <div class="row">
+            <!-- barra lateral izquiera -->
+            <div class="col-sm-3">
+                <div class="text-center">
+                    <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar">
+                    <h6>Seleccione foto de perfil</h6>
+                    <input type="file" id="imagen" value="<%= result.imagen %>" name="imagen" class="text-center center-block file-upload">
+                </div></hr><br>
+
+                <div class="panel panel-default">
+                <div class="panel-heading"><i class='bx bxl-linkedin-square'></i> Linkedin </div>
+                    <div class="form-group">                 
+                        <input required type="text" class="form-control" value="<%= result.linkedin%>" name="linkedin" id="linkedin" placeholder="Tu perfil en Linkedin">
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading"> Idiomas </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="idiomas" id="idiomas" placeholder="Algun idioma Extra">
+                        <!-- <button type="submit" class="btn btn-primary btn-sm " ><i class='bx bxs-plus-circle bx-sm'></i> Otro</button> -->
+                    </div>
+                </div>
+                
+            </div>
+
+            <!-- formulario para llenar perfil -->
+            <div class="col-sm-9">
+                <div > 
+                    <div class="form-group">
+                        <div class="col-xs-6">
+                            <label for="nombres"><h4>Nombres</h4></label>
+                            <input required type="text" class="form-control" value="<%= result.nombres %>" name="nombres" id="nombres" placeholder="Nombres" >
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-xs-6">
+                            <label for="apellidos"><h4>Apellidos</h4></label>
+                            <input required type="text" class="form-control" value="<%= result.apellidos %>" name="apellidos" id="apellidos" placeholder="Apellidos" >
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-xs-6">
+                            <label for="usuario"><h4>Usuario</h4></label>
+                            <input required type="text" class="form-control" value="<%= result.usuario %>"name="usuario" id="usuario" placeholder="Usuario" >
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-xs-6">
+                            <label for="email"><h4>Correo</h4></label>
+                            <input required type="text" class="form-control" value="<%= result.email %>"name="email" id="email" placeholder="Correo" >
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-xs-6">
+                            <label for="pass"><h4>Contraseña</h4></label>
+                            <input required type="password" class="form-control" value="<%= result.pass %>" name="pass" id="pass" placeholder="Contraseña" >
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="col-xs-6">
+                            <label for="pais"><h4>Pais</h4></label>
+                            <input required type="text" class="form-control" value="<%= result.pais %>" name="pais" id="pais" placeholder="Pais de residencia">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-xs-6">
+                            <label for="ciudad"><h4>Ciudad</h4></label>
+                            <input required type="text" class="form-control" value="<%= result.ciudad %>" name="ciudad" id="ciudad" placeholder="Ciudad de residencia" >
+                        </div>
+                    </div>            
+
+                    <div class="form-group">
+                        <div class="col-xs-6">
+                            <label for="edad"><h4>Edad</h4></label>
+                            <input required type="number" class="form-control" value="<%= result.edad %>" name="edad" id="edad" placeholder="Numero de años">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-xs-6">
+                            <label for="estudios"><h4>Estudios</h4></label>
+                            <input required type="text" class="form-control" value="<%= result.estudios %>" id="estudios" placeholder="Universidad o ultimo grado de estudios" >
+                        </div>
+                    </div>
+
+                    <div class="form-group"> 
+                        <div class="col-xs-6">
+                            <label for="cv"><h4>Hoja de vida</h4></label>
+                            <input required type="file" class="form-control" value="<%= result.cv %>" name="cv" id="cv" placeholder="cv">
+                        </div>
+                    </div>
+
+                    <div class="form-group">  
+                        <div class="col-xs-6">
+                            <label for="hobies"><h4>Hobies</h4></label>
+                            <textarea required type="body" class="form-control" value="<%= result.hobies %>" name="hobies" id="hobies" placeholder="Escribe algun hobie" ></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                                <br>
+                                <button type="submit" class="btn btn-lg btn-success pull-right"><i class="glyphicon glyphicon-ok-sign"></i> Resgistrar</button>
+                            </div>
+                    </div>
+                </div>
+            </div><!-- div formulario para llenar perfil -->
+            
+        </div><!--/row-->
+    </div>
+    </form>
+
+    <script src="js/verImagen.js"></script>
+    <script src="js/login/editaRegistro.js"></script>
+  
+</body>
+</html>
