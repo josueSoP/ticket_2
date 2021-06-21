@@ -12,22 +12,23 @@ module.exports = class Datos {
     return resultado[0]
   }
 
+  ////////////// FUNCION PARA GUARDAR INFORMACION TABLA CONOCIMIENTOS ///////////
+  static async guardar(data){
+    let usuarioNuevo = [ data.bd, data.apis, data.testing, data.seguridad, data.teoriaObj]
+    try {
+      await sequelize.query(`INSERT INTO conocimientos (bd, apis, testing, seguridad, teoriaObj) VALUES (?,?,?,?,?)`,
+      {replacements : usuarioNuevo, type: sequelize.QueryTypes.SELECT})
+      return true
+    }catch (err){
+      console.log(err)
+      throw new Error ('No pude guardar')
+    }
+  }
+
+
+
 }
-// ////////////// FUNCION PARA REGISTRAR UN USUARIO ///////////
-//   static async guardarUser (data){
-//     let usuarioNuevo = [ data.nombres, data.apellidos, data.usuario, data.email, data.pass,
-//       data.imagen, data.ciudad, data.pais, data.edad, data.estudios,data.linkedin,data.hobies, data.cv]
-//     try {
-//       let resultado = await sequelize.query(`INSERT INTO usuarios(
-//         nombres,apellidos,usuario,email,pass,imagen,ciudad,pais,edad,estudios,linkedin,hobies,cv) 
-//         VALUES (?,?,?,?,?, ?,?,?,?,?,?,?,?)`,
-//       {replacements : usuarioNuevo, type: sequelize.QueryTypes.SELECT})
-//       return true
-//     }catch (err){
-//       console.log(err)
-//       throw new Error ('No pude guardar')
-//     }
-//   }
+
 
 //   static async existenciaUser (data){
 //     let buscaUsuario = [ data.usuario ]

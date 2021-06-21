@@ -8,15 +8,15 @@ module.exports = class Datos {
 
 ////////////// FUNCION PARA LISTAR TECNOLOGIAS ////////////////
   static async listar (){
-    let resultado = await sequelize.query('SELECT * FROM tecnologias')
+    let resultado = await sequelize.query('SELECT * FROM idiomas')
     return resultado[0]
   }
 
-  ////////////// FUNCION PARA GUARDAR INFORMACION TABLA TECNOLOGIAS ///////////
+////////////// FUNCION PARA GUARDAR INFORMACION TABLA IDIOMAS ///////////
   static async guardar(data){
-    let usuarioNuevo = [ data.nodeJs, data.frontend, data.swagger, data.js ]
+    let usuarioNuevo = [ data.idiomas ]
     try {
-      await sequelize.query(`INSERT INTO tecnologias (nodeJs, frontend, swagger, js) VALUES (?,?,?,?)`,
+      await sequelize.query(`INSERT INTO idiomas (idiomas) VALUES (?)`,
       {replacements : usuarioNuevo, type: sequelize.QueryTypes.SELECT})
       return true
     }catch (err){

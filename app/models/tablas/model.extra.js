@@ -12,4 +12,17 @@ module.exports = class Datos {
     return resultado[0]
   }
 
+  ////////////// FUNCION PARA GUARDAR INFORMACION TABLA EXTRAS ///////////
+  static async guardar(data){
+    let usuarioNuevo = [ data.conExtra ]
+    try {
+      await sequelize.query(`INSERT INTO extras (conExtra) VALUES (?)`,
+      {replacements : usuarioNuevo, type: sequelize.QueryTypes.SELECT})
+      return true
+    }catch (err){
+      console.log(err)
+      throw new Error ('No pude guardar')
+    }
+  }
+
 }

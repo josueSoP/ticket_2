@@ -1,4 +1,5 @@
 const modelUsuarios = require('../models/model.usuarios');
+// const modelIdiomas = require('../models/model.idiomas');
 
 //////////// MODULO PARA LISTAR USUARIOS ////////////
 module.exports.listarRegistros = async ()=>{
@@ -30,6 +31,8 @@ module.exports.existenciaUsuario = async (data) => {
 module.exports.guardarUsuario = async (data)=>{
     try {
         let resultado = await modelUsuarios.guardarUser(data)
+        // let resIdiomas = await modelIdiomas.guardar(data)
+        // let resultado = {resUsuarios, resIdiomas}
         return resultado
     } catch (err) {
         console.log('Error controlador' + err)
