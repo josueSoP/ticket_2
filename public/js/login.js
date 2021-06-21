@@ -50,6 +50,6 @@ form.addEventListener('submit', async (event) => {
         data.nombre = recupera.user.nombres + " " + recupera.user.apellidos;
         data.token = recupera.token;
         Usuarios.guardaUsuario(data);
-            location.href = '/perfil'
+            location.href = '/usuarios'
     }
 })

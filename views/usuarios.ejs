@@ -6,7 +6,7 @@
             <div class="container-fluid">
                 <a class="navbar-brand" href="/usuarios"><img alt="logo" src="/assets/logo-tecla.png" width="120px" height="30px"></a>
                 <a class="navbar-brand" href="/usuarios">Teclers</a>
-                <a class="navbar-brand " href="/perfil">Mi Perfil</a>
+                <a class="navbar-brand " href="/miPerfil/<%= results.id_usuarios %>">Mi Perfil</a>
                 <div class="collapse navbar-collapse" id="navbarTogglerDemo03"></div>
             </div>
         </nav>
@@ -27,7 +27,7 @@
                                 <p class="card-text"><%= user.ciudad  %>, <%= user.pais %></p>
                                 <p class="card-text"><%= user.linkedin %></p>
                                 <div class="col text-center mb-2">
-                                    <!-- <a href="/perfil/<%= user.id%>" class="btn btn-outline-primary btn-block">Ver Perfil</a> -->
+                                    <a href="/verTecler/<%=user.id_usuarios%>" class="btn btn-outline-primary btn-block">Ver Perfil</a>
                                     <a onclick="agregarAmigo('<%= user.id %>')" class="btn btn-outline-success">Agregar</a>  
                                 </div>
                             </div>

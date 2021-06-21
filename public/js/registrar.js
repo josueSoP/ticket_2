@@ -1,4 +1,4 @@
-let form = document.getElementById('formPerfil');
+let form = document.getElementById('nuevoPerfil');
 let nombres = document.getElementById('nombres');
 let apellidos = document.getElementById('apellidos');
 let usuario = document.getElementById('usuario');
