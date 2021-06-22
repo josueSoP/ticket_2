@@ -27,16 +27,36 @@ module.exports.listarInfoTablas = async ()=>{
 /////////MODULOS PARA CREAR INFORMACION //////////////////////
 module.exports.guardarTablas = async (data)=>{
     try {
-        let resCono = await Conocimientos.guardar(data)
-        let resTecno = await Tecnologias.guardar(data)
-        let resDesem = await Desempeno.guardar(data)
-        let resBlandas = await Blandas.guardar(data)
-        let resEntorn = await Entornos.guardar(data)
-        let resExtra = await Extra.guardar(data)
-        let resultado = {resCono, resTecno, resDesem, resBlandas, resEntorn, resExtra}
-        return resultado
+        let resCono = await Conocimientos.guardar(id,data)
+        // let resTecno = await Tecnologias.guardar(id,data)
+        // let resDesem = await Desempeno.guardar(id,data)
+        // let resBlandas = await Blandas.guardar(id,data)
+        // let resEntorn = await Entornos.guardar(id,data)
+        // let resExtra = await Extra.guardar(id,data)
+        // let resultado = {resCono, resTecno, resDesem, resBlandas, resEntorn, resExtra}
+        // return resultado
+        // console.log(resCono);
+        return resCono
     } catch (err) {
-        console.log('Error controlador' + err)
+        console.log('Error controlador ' + err)
+        throw new Error('Error en el controlador guardarTablas')
+    }
+}
+
+module.exports.guardarTablaConId = async (id,data)=>{
+    try {
+        let resCono = await Conocimientos.guardarConId(id,data)
+        // let resTecno = await Tecnologias.guardar(id,data)
+        // let resDesem = await Desempeno.guardar(id,data)
+        // let resBlandas = await Blandas.guardar(id,data)
+        // let resEntorn = await Entornos.guardar(id,data)
+        // let resExtra = await Extra.guardar(id,data)
+        // let resultado = {resCono, resTecno, resDesem, resBlandas, resEntorn, resExtra}
+        // return resultado
+        // console.log(resCono);
+        return resCono
+    } catch (err) {
+        console.log('Error controlador ' + err)
         throw new Error('Error en el controlador guardarTablas')
     }
 }

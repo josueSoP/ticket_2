@@ -16,7 +16,8 @@ const upload = multer({ storage: almacena})
 module.exports = async (app)=> {       
 
 ///////// RUTAs PARA IR AL PERFIL DE UN USUARIO ///////////////////////
-    app.get('/miPerfil/:id_usuarios', async (req,res)=>{
+    app.get('/miPerfil/:id_usuarios', midd.verificacionUsuario, async (req,res)=>{
+    // app.get('/miPerfil/:id_usuarios', async (req,res)=>{
         let data = req.params.id_usuarios;
         try {
             let resultado = await controladorUsuarios.buscarUsuario(data)
@@ -32,7 +33,8 @@ module.exports = async (app)=> {
         }
     })
 
-    app.get('/verTecler/:id_usuarios', async (req,res)=>{
+    app.get('/verTecler/:id_usuarios',midd.verificacionUsuario, async (req,res)=>{
+    // app.get('/verTecler/:id_usuarios', async (req,res)=>{
         let data = req.params.id_usuarios;
         try {
             let resultado = await controladorUsuarios.buscarUsuario(data)
@@ -48,7 +50,8 @@ module.exports = async (app)=> {
     })
     
 ////////////// RUTA PARA LISTAR USUARIOS //////////////////////////////
-    app.get('/usuarios', async(req,res)=> {
+    app.get('/usuarios', midd.verificacionUsuario, async(req,res)=> {
+    // app.get('/usuarios', async(req,res)=> {
         try {
             let resultado = await controladorUsuarios.listarRegistros()
             res.render('usuarios.ejs', {results:resultado});
@@ -89,7 +92,8 @@ module.exports = async (app)=> {
     })
 
 //////////// RUTAS PARA MODIFICAR PARA MODIFICAR USUARIO //////////////
-    app.get('/buscar/:id_usuarios', async (req,res)=>{
+    app.get('/buscar/:id_usuarios', midd.verificacionUsuario, async (req,res)=>{
+    // app.get('/buscar/:id_usuarios', async (req,res)=>{
         let data = req.params.id_usuarios;
         try {
             let resultado = await controladorUsuarios.buscarUsuario(data)
@@ -105,7 +109,8 @@ module.exports = async (app)=> {
         }
     })
 
-    app.post('/update/:id_usuarios', async (req, res)=>{
+    app.post('/update/:id_usuarios', midd.verificacionUsuario, async (req, res)=>{
+    // app.post('/update/:id_usuarios',  async (req, res)=>{
         let id = req.params.id_usuarios;
         let data = req.body;
         try {
@@ -123,7 +128,8 @@ module.exports = async (app)=> {
     });
 
 ////////////// RUTA PARA ELIMINAR USUARIOS ///////////////////////////
-    app.get('/eliminar/:id_usuarios', async (req,res)=>{
+    app.get('/eliminar/:id_usuarios', midd.verificacionUsuario, async (req,res)=>{
+    // app.get('/eliminar/:id_usuarios', async (req,res)=>{
         let data = req.params.id_usuarios;
         try {
             await controladorUsuarios.eliminarUsuario(data)

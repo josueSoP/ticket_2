@@ -54,7 +54,7 @@ form.addEventListener('submit', async (event) => {
             title: "Usuario Agregado Correctamente",
             icon: "success",
           });
-        location.href = '/crearInfoInicio'
+        location.href = '/crearInfoTablas'
     }
 } catch (error) {
     swal({
