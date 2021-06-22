@@ -1,104 +1,84 @@
+const {DataTypes, Model} = require('sequelize')
 const sequelize = require('../../db/db')
 
-module.exports = class Datos {
-  //constructor
-  constructor (datos) {
-    this.datos = datos
-}
-
-////////////// FUNCION PARA LISTAR USUARIOSS ////////////////
-  static async listar (){
-    let resultado = await sequelize.query('SELECT * FROM usuarios')
-    return resultado[0]
+const Usuarios = sequelize.define('usuarios', {
+  id : {
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+    autoIncrement: true,
+  },
+  nombres : {
+      type: DataTypes.STRING(50),
+      allowNull: false,
+  },
+  apellidos: {
+      type: DataTypes.STRING(50),
+      allowNull: false,
+  },
+  usuario: {
+    type: DataTypes.STRING(50),
+    allowNull: false,
+  },
+  email: {
+    type: DataTypes.STRING(60),
+    allowNull: false,
+  },
+  pass: {
+    type: DataTypes.STRING(20),
+    allowNull: false
   }
+},{
+  timestamps: true
+})
 
-////////////// FUNCION PARA REGISTRAR UN USUARIO ///////////
-  static async guardarUser (data){
-    let usuarioNuevo = [ data.nombres, data.apellidos, data.usuario, data.email, data.pass,
-      data.imagen, data.ciudad, data.pais, data.edad, data.estudios,data.linkedin,data.hobies, data.cv]
-    try {
-      await sequelize.query(`INSERT INTO usuarios(
-        nombres,apellidos,usuario,email,pass,imagen,ciudad,pais,edad,estudios,linkedin,hobies,cv) 
-        VALUES (?,?,?,?,?, ?,?,?,?,?,?,?,?)`,
-      {replacements : usuarioNuevo, type: sequelize.QueryTypes.SELECT})
+module.exports = Usuarios;
+
+////////MODULOS PARA LOGIN//////////////////
+  module.exports.existenciaDeUsuario = async (usr)=>{
+  //chequear con la base de datos que exista el usuario
+  let resultado = await Usuarios.findOne({where: {usuario:usr.usuario, pass: usr.pass}})
+  if (resultado === null){
+      return false
+  }else {
       return true
-    }catch (err){
-      console.log(err)
-      throw new Error ('No pude guardar')
-    }
+  }
   }
 
-  static async existenciaUser (data){
-    let buscaUsuario = [ data.usuario ]
-    try {
-        let resultado = await sequelize.query(`SELECT * FROM usuarios WHERE usuario = ?`,
-        {replacements : buscaUsuario, type : sequelize.QueryTypes.SELECT})
-        if (resultado[0] === undefined) {
-            return false
-        } else {
-            return true
-        }
-    } catch (error) {
-        throw new Error ('Ocurrio un error')
-    }
-  }
+module.exports.usuarioAutenticado = async (usr)=>{
+//chequear con la base de datos que exista el usuario
+let resultado = await Usuarios.findOne({where: {usuario:usr.usuario, pass: usr.pass}})
+if (resultado === null){
+    return false
+}else {
+    return true
+}
+}
 
-  static async existeId (id){
-    let buscaUsuario = [ id ]
-    try {
-        let resultado = await sequelize.query(`SELECT * FROM usuarios WHERE id_usuarios = ?`,
-        {replacements : buscaUsuario, type : sequelize.QueryTypes.SELECT})
-        if (resultado === null) {
-            return false
-        } else {
-            return true
-        }
-    } catch (error) {
-        throw new Error ('Ocurrio un error')
-    }
-  }
+module.exports.recuperarInfoUser = async (usr) => {
+let resultado = await Usuarios.findAll({where: {usuario:usr.usuario, pass: usr.pass}})
+if (resultado === null){
+  return false
+}else {
+  return resultado[0]
+}
+}
 
-////////////// FUNCION PARA MODIFICAR UN USUARIOS ///////////
-  static async buscarId (data){
-    let usuarioUpdate = [ data ]
-    try {
-        let resultado = await sequelize.query(`SELECT * FROM usuarios WHERE id_usuarios = ? `,
-        {replacements : usuarioUpdate, type : sequelize.QueryTypes.SELECT})
-        if (resultado === null){
-          return false
-        }else {
-          return resultado[0]
-        }
-    } catch (error) {
-        throw new Error ('Ocurrio un error en el modelo buscarId')
-    }
-  }
-
-  static async actualizarUser (id, data){
-    let usuarioUpdate = [ data.nombres, data.apellidos, data.email, data.usuario, data.pass,
-      data.imagen, data.ciudad, data.pais, data.edad, data.estudios,data.linkedin,data.hobies, data.cv, id ]
-    try {
-      let resultado = await sequelize.query(`UPDATE usuarios SET nombres=?,apellidos=?,email=?,usuario=?,
-      pass=?,imagen=?,ciudad=?,pais=?,edad=?,estudios=?,linkedin=?,hobies=?,cv=? WHERE id_usuarios= ? `,
-      {replacements : usuarioUpdate, type: sequelize.QueryTypes.SELECT})
+  /////MODULO PARA LISTAR USUARIOSS///////////
+  module.exports.listar = async () => {
+      let resultado = await sequelize.query('SELECT * FROM usuarios')
       return resultado[0]
-    }catch (err){
-      console.log(err)
-      throw new Error ('Error en el modelo actualizarUser')
+    }
+
+    //////////// MODELO PARA MODIFICAR UN USUARIOS ///////////////////
+  module.exports.buscarId = async (data) => {
+    try{
+      let resultado = await Usuarios.findAll({ where: {id : data} })
+      if (resultado === null){
+        return false
+      }else {
+        return resultado[0]
+      }
+    }catch (err) {
+      throw new Error ('No existe este usuario')
     }
   }
-
-////////////// FUNCION PARA ELIMINAR UN USUARIOS ///////////
-  static async deleteUser (data){
-    let eliminarUser = [ data ]
-    try {
-        let resultado = await sequelize.query(`DELETE FROM usuarios WHERE id_usuarios = ? `,
-        {replacements : eliminarUser, type : sequelize.QueryTypes.SELECT})
-        return resultado
-    } catch (err) {
-        console.log(err);
-        throw new Error ('Error en el modelo deleteUser')
-    }
-}
-
-}

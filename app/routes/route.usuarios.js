@@ -1,72 +1,39 @@
 const controladorUsuarios = require('../controllers/controller.usuarios')
 const midd = require('../../middleware/midd.verificacion');
-//para imagen
-var multer = require ('multer');
-// require('console-png').attachTo(console);
-const almacena = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, './uploads')
-    },
-    filename: function (req, file, cb) {
-      cb(null, `${Date.now()}-${file.originalname}`)
-    }
-  })
-const upload = multer({ storage: almacena})
 
-module.exports = async (app)=> {       
-
-///////// RUTAs PARA IR AL PERFIL DE UN USUARIO ///////////////////////
-    app.get('/miPerfil/:id_usuarios', midd.verificacionUsuario, async (req,res)=>{
-    // app.get('/miPerfil/:id_usuarios', async (req,res)=>{
-        let data = req.params.id_usuarios;
-        try {
-            let resultado = await controladorUsuarios.buscarUsuario(data)
-            if(resultado){
-                res.render('miPerfil.ejs', {result:resultado })
-                // res.status(200).send({message: 'usuario  encontrado', resultado});
-            }else{
-                res.status(400).send({message: 'No se encontro id'});
-            }
-
+module.exports = async (app)=> {
+    ////////////// LOGIN DE USUARIOS /////////////////////////
+    app.get('/login', async (req,res)=>{
+        try{
+            res.render('login/login.ejs');
         }catch (err){
-            res.status(400).json('Error al dirigirse a la pagina EDITAR')
+            res.estatus(400).json('No se puede mostrar')
         }
     })
 
-    app.get('/verTecler/:id_usuarios',midd.verificacionUsuario, async (req,res)=>{
-    // app.get('/verTecler/:id_usuarios', async (req,res)=>{
-        let data = req.params.id_usuarios;
+    app.post('/login', async (req,res)=>{
+        let usuario = req.body
         try {
-            let resultado = await controladorUsuarios.buscarUsuario(data)
-            if(resultado){
-                res.render('verTecler.ejs', {result:resultado })
-                // res.status(200).send({message: 'usuario  encontrado', resultado});
-            }else{
-                res.status(400).send({message: 'No se encontro id'});
+            let resultado = await controladorUsuarios.chequearUsuario(usuario)
+            if (resultado){
+                let usuarioInfo = await controladorUsuarios.datosUsuario(usuario)
+                let tokenResult = await controladorUsuarios.generaToken(usuario)
+                // res.status(200).send({tokenResult, message: 'usuario y contraseña valido',usuarioInfo});
+                res.json({ token: tokenResult, user: usuarioInfo })
+            }else {
+                throw new Error ("Contraseña Incorrecta")
             }
         }catch (err){
-            res.status(400).json('Error al dirigirse a la pagina EDITAR')
+            res.status(400).json({ error: err.message})
         }
     })
-    
-////////////// RUTA PARA LISTAR USUARIOS //////////////////////////////
-    app.get('/usuarios', midd.verificacionUsuario, async(req,res)=> {
-    // app.get('/usuarios', async(req,res)=> {
-        try {
-            let resultado = await controladorUsuarios.listarRegistros()
-            res.render('usuarios.ejs', {results:resultado});
-            // res.status(200).send({ resultado});
 
-        }catch (err){
-            console.log(err)
-            res.status(400).json('Error al dirigirse a la ruta vistas')
-        }
-    })
-    
-///////// RUTAS PARA AGREGAR Y GUARDAR USUARIOS ///////////////////////
+////////////////////// REGISTRO de USUARIOS///////////////////////////
+       
+/////////Rutas para agregar y guardar un nuevo registro////
     app.get('/crear',  async (req,res)=>{
         try{
-            res.render('registrar.ejs')
+            res.render('login/registro.ejs')
         }catch (err){
             console.log(err)
             res.status(400).json('Error al dirigirse a la pagina CREAR')
@@ -74,16 +41,13 @@ module.exports = async (app)=> {
     })
 
     app.post('/registro', async (req,res)=>{
-        let data = req.body
+        data = req.body
         try{
-            let resultado = await controladorUsuarios.existenciaUsuario(data)
-            if (resultado) {
-                res.status(400).send({message: `No se pudo agregar. El usuario: ${data.usuario} ya existe`}); 
-            } else {
-                await controladorUsuarios.guardarUsuario(data)
-                // res.redirect('/crearInfoInicio')
+            let resultado = await controladorUsuarios.guardarUsuario(data)
+            if(resultado) {
+                res.redirect('/crearPerfil')
                 console.log('Usuario Agregado Correctamente');
-                res.status(200).send({message: 'usuario agregado correctamente',data});
+                // res.status(200).send({message: 'usuario agregado correctamente',data});
             }
         }catch (err){
             res.status(400).send({message: 'No se pudo registrar el usuario'});
@@ -91,14 +55,13 @@ module.exports = async (app)=> {
         }
     })
 
-//////////// RUTAS PARA MODIFICAR PARA MODIFICAR USUARIO //////////////
-    app.get('/buscar/:id_usuarios', midd.verificacionUsuario, async (req,res)=>{
-    // app.get('/buscar/:id_usuarios', async (req,res)=>{
-        let data = req.params.id_usuarios;
+/////////rutas para modificar un usuario
+    app.get('/edit/:id', async (req,res)=>{
+        let data = req.params.id;
         try {
-            let resultado = await controladorUsuarios.buscarUsuario(data)
+            let resultado = await controladorUsuarios.buscarRegistro(data)
             if(resultado){
-                res.render('editaRegistro.ejs', {result:resultado })
+                res.render('login/editaRegistro.ejs', {result:resultado.dataValues })
                 // res.status(200).send({message: 'usuario  encontrado', resultado});
             }else{
                 res.status(400).send({message: 'No se encontro id'});
@@ -109,46 +72,40 @@ module.exports = async (app)=> {
         }
     })
 
-    app.post('/update/:id_usuarios', midd.verificacionUsuario, async (req, res)=>{
-    // app.post('/update/:id_usuarios',  async (req, res)=>{
-        let id = req.params.id_usuarios;
+    app.post('/update/:id', midd.verificacionUsuario, async (req, res)=>{
+        let id = req.params.id;
         let data = req.body;
         try {
-            let resultado = await controladorUsuarios.buscarUsuario(id)
-            if(resultado){
-                let resultado = await controladorUsuarios.actualizarUsuario(id, data);
-                res.status(200).send({message: 'usuario editado correctamente', resultado});
-                // res.redirect('/perfil');  
-            }else{
-                res.status(400).send({message: 'No se modifico porque no existe id'});
-            }          
+            let resultado = await controladorUsuarios.modificarUsuario(id, data);
+            res.status(200).send({message: 'usuario editado correctamente', resultado});
+            // res.redirect('/perfil');            
         } catch (error) {
             res.status(400).json('No se puedo modificar el usuarios')
         }
     });
 
-////////////// RUTA PARA ELIMINAR USUARIOS ///////////////////////////
-    app.get('/eliminar/:id_usuarios', midd.verificacionUsuario, async (req,res)=>{
-    // app.get('/eliminar/:id_usuarios', async (req,res)=>{
-        let data = req.params.id_usuarios;
+//////////////ruta para listar usuarios
+    app.get('/usuarios', midd.verificacionUsuario, async(req,res)=> {
         try {
-            await controladorUsuarios.eliminarUsuario(data)
-            res.status(200).send({message: `usuario ${data} eliminado correctamente`});
-            // res.redirect('/login');      
+            let resultado = await controladorUsuarios.listarRegistros()
+            res.render('login/listaRegistro.ejs', {results:resultado});
         }catch (err){
-            res.status(400).json('No se puedo eliminar el usuario')
+            console.log(err)
+            res.status(400).json('Error al dirigirse a la ruta vistas')
         }
     })
 
-///////////////////// SUBIR IMAGEN ////////////////////////////
-    app.get('/archivo', (req, res) => {
-        res.render('imagen.ejs')
-    })
-
-    // let dobleInput = upload.fields([{ name: 'imagen', maxCount: 1 }, { name: 'cv' }])
-    // app.post('/registro', dobleInput, async (req,res)=>{
-    app.post('/subir', upload.single('imagen'), (req, res) => {
-        console.log(req.file) // Nos devuelve un objeto con la información de nuestro archivo
-        res.send('Archivo subido correctamente')
+////////////ruta para eliminar usuario
+    app.get('/delete/:id', midd.verificacionUsuario, async (req,res)=>{
+        let data = req.params.id;
+        try {
+            let resultado = await controladorUsuarios.eliminarRegistro(data)
+            if(resultado){
+                res.status(200).send({message: 'usuario '+data+' eliminado correctamente'});
+                // res.redirect('/login');
+            }      
+        }catch (err){
+            res.status(400).json('No se puedo eliminar el usuario')
+        }
     })
 }

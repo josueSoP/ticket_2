@@ -1,6 +1,5 @@
-<%- include("cabeceras/plantillas.ejs",{tituloWeb:'Crear un Perfil'}) %>
+<%- include("cabeceras/plantillas.ejs",{tituloWeb:'Crear Perfil'}) %>
 <body>
-    <form class="form" method="post" id="nuevoPerfil" > <!-- novalidate> -->
     <hr>
     <div class="container bootstrap snippet">
         <div class="row">
@@ -9,29 +8,19 @@
                 <div class="text-center">
                     <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar">
                     <h6>Seleccione foto de perfil</h6>
-                    <input type="file" id="imagen" name="imagen" class="text-center center-block file-upload">
+                    <input type="file" class="text-center center-block file-upload">
                 </div></hr><br>
 
                 <div class="panel panel-default">
-                <div class="panel-heading"><i class='bx bxl-linkedin-square'></i> Linkedin </div>
-                    <div class="form-group">                 
-                        <input required type="text" class="form-control" name="linkedin" id="linkedin" placeholder="Tu perfil en Linkedin">
-                    </div>
+                <div class="panel-heading">Website <i class="fa fa-link fa-1x"></i></div>
+                <div class="panel-body"><a href="http://bootnipets.com">bootnipets.com</a></div>
                 </div>
-
-                <div class="panel panel-default">
-                    <div class="panel-heading"> Idiomas </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control" name="idiomas" id="idiomas" placeholder="Algun idioma Extra">
-                        <!-- <button type="submit" class="btn btn-primary btn-sm " ><i class='bx bxs-plus-circle bx-sm'></i> Otro</button> -->
-                    </div>
-                </div>
-                
             </div>
 
             <!-- formulario para llenar perfil -->
             <div class="col-sm-9">
-                <div > 
+                <form class="formPerfil" action="##" method="post" id="nuevoPerfil"> <!-- novalidate> -->
+
                     <div class="form-group">
                         <div class="col-xs-6">
                             <label for="nombres"><h4>Nombres</h4></label>
@@ -46,27 +35,6 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <div class="col-xs-6">
-                            <label for="usuario"><h4>Usuario</h4></label>
-                            <input required type="text" class="form-control" name="usuario" id="usuario" placeholder="Usuario" >
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="col-xs-6">
-                            <label for="email"><h4>Correo</h4></label>
-                            <input required type="text" class="form-control" name="email" id="email" placeholder="Correo" >
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="col-xs-6">
-                            <label for="pass"><h4>Contraseña</h4></label>
-                            <input required type="password" class="form-control" name="pass" id="pass" placeholder="Contraseña" >
-                        </div>
-                    </div>
-                    
                     <div class="form-group">
                         <div class="col-xs-6">
                             <label for="pais"><h4>Pais</h4></label>
@@ -97,34 +65,41 @@
 
                     <div class="form-group"> 
                         <div class="col-xs-6">
-                            <label for="cv"><h4>Hoja de vida</h4></label>
-                            <input required type="file" class="form-control" name="cv" id="cv" placeholder="cv">
+                            <label for="idiomas"><h4>Idiomas</h4></label>
+                            <input required type="text" class="form-control" name="idiomas" id="idiomas" placeholder="Algun idioma Extra">
+                        </div>
+                    </div>
+
+                    <div class="form-group">                 
+                        <div class="col-xs-6">
+                            <label for="linkedin"><h4>LinkedIn</h4></label>
+                            <input required type="text" class="form-control" name="linkedin" id="linkedin" placeholder="Tu perfil en Linkedin">
                         </div>
                     </div>
 
                     <div class="form-group">  
                         <div class="col-xs-6">
                             <label for="hobies"><h4>Hobies</h4></label>
-                            <input required type="text" class="form-control" name="hobies" id="hobies" placeholder="Escribe algun hobie" ></textarea>
+                            <textarea required type="text" class="form-control" rows="3" name="hobies" id="hobies" placeholder="Escribe algun hobie" ></textarea>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <div class="col-xs-12">
                                 <br>
-                                <button type="submit" class="btn btn-lg btn-success pull-right"><i class="glyphicon glyphicon-ok-sign"></i> Resgistrar</button>
-                                <a href="/login" class="btn btn-lg btn-warning pull-right">Ya tengo Cuenta</a>
+                                <!-- <button class="btn btn-lg btn-success pull-right" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Guardar</button> -->
+                                <a href="/crearInfoTablas"  class="btn btn-lg btn-success pull-right" ><i class="glyphicon glyphicon-ok-sign"></i> Save</a>
+                                <!-- <button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button> -->
                             </div>
                     </div>
-                </div>
-            </div><!-- div formulario para llenar perfil -->
+                </form>
+            </div>
             
         </div><!--/row-->
     </div>
-    </form>
 
-    <script src="js/registrar.js"></script>
-    <script src="js/verImagen.js"></script>
-  
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src=""></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
 </html>

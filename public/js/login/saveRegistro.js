@@ -1,18 +1,9 @@
-let form = document.getElementById('nuevoPerfil');
+let form = document.getElementById('formRegistro');
 let nombres = document.getElementById('nombres');
 let apellidos = document.getElementById('apellidos');
 let usuario = document.getElementById('usuario');
 let email = document.getElementById('email');
 let pass = document.getElementById('pass');
-let imagen = document.getElementById('imagen');
-let ciudad = document.getElementById('ciudad');
-let pais = document.getElementById('pais');
-let edad = document.getElementById('edad');
-let estudios = document.getElementById('estudios');
-let linkedin = document.getElementById('linkedin');
-let hobies = document.getElementById('hobies');
-let cv = document.getElementById('cv');
-// let idiomas = document.getElementById('idiomas');
 
 //Manda el post
 form.addEventListener('submit', async (event) => {
@@ -31,15 +22,7 @@ form.addEventListener('submit', async (event) => {
             "apellidos": apellidos.value,
             "email": email.value,
             "usuario": usuario.value,
-            "pass": pass.value,
-            "imagen": imagen.value,
-            "ciudad": ciudad.value,
-            "pais": pais.value,
-            "edad": edad.value,
-            "estudios": estudios.value,
-            "linkedin": linkedin.value,
-            "hobies": hobies.value,
-            "cv": cv.value,
+            "pass": pass.value
         })
     })
 
@@ -54,7 +37,7 @@ form.addEventListener('submit', async (event) => {
             title: "Usuario Agregado Correctamente",
             icon: "success",
           });
-        location.href = '/crearInfoTablas'
+        location.href = '/crearPerfil'
     }
 } catch (error) {
     swal({
@@ -72,12 +55,4 @@ function newFormulario()
     email.value = ""
     usuario.value = ""
     pass.value = ""
-    imagen.vale = ""
-    ciudad.vale = ""
-    pais.vale = ""
-    edad.vale = ""
-    estudios.vale = ""
-    linkedin.vale = ""
-    hobies.vale = ""
-    cv.vale = ""
 }
