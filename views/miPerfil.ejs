@@ -191,16 +191,19 @@
                                     <div class="card-header text-center"> CONOCIMIENTOS </div>
                                     <div class="card-body">
                                         <div class="progress"> Bases de datos
-                                            <div class="progress-bar" role="progressbar" style="width: 60%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">3</div>
+                                            <div class="progress-bar progress-bar-danger" role="progressbar" style="width: (20*2%)" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">< %= tablas.bd %></div>
+                                        </div>
+                                        <div class="progress"> Apis
+                                            <div class="progress-bar progress-bar-danger" role="progressbar" style="width: 20%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">< %= tablas.apis %></div>
                                         </div>
                                         <div class="progress"> Testing
-                                            <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                            <div class="progress-bar progress-bar-danger" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">< %= tablas.testing %></div>
                                         </div>
                                         <div class="progress">Seguridad
-                                            <div class="progress-bar" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                            <div class="progress-bar progress-bar-danger" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">< %= tablas.seguridad %></div>
                                         </div>
                                         <div class="progress">Teoria de objetos
-                                            <div class="progress-bar" role="progressbar" style="width: 20%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                            <div class="progress-bar progress-bar-danger" role="progressbar" style="width: 20%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">< %= tablas.teoriaObj %></div>
                                         </div>
                                     </div>
                                 </div>
@@ -208,16 +211,16 @@
                                     <div class="card-header text-center"> TECNOLOGIAS </div>
                                     <div class="card-body">
                                         <div class="progress">NodeJS
-                                            <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                            <div class="progress-bar progress-bar-warning" role="progressbar" style="width: 25%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">< %= tablas.nodeJs %></div>
                                         </div>
                                         <div class="progress">Frontend
-                                            <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                            <div class="progress-bar progress-bar-warning" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">< %= tablas.frontend %></div>
                                         </div>
                                         <div class="progress">Swagger
-                                            <div class="progress-bar" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                            <div class="progress-bar progress-bar-warning" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">< %= tablas.swagger %></div>
                                         </div>
                                         <div class="progress">JavaScript
-                                            <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                            <div class="progress-bar progress-bar-warning" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">< %= tablas.js %></div>
                                         </div>
                                     </div>
                                 </div>
@@ -225,13 +228,53 @@
                                     <div class="card-header text-center"> DESEMPEÑO </div>
                                     <div class="card-body">
                                         <div class="progress">Calidad de Codigo
-                                            <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                            <div class="progress-bar progress-bar-info" role="progressbar" style="width: 25%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">< %= tablas.calidadCod %></div>
                                         </div>
                                         <div class="progress">Velocidad de Entrega
-                                            <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                            <div class="progress-bar progress-bar-info" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">< %= tablas.velEntrega %></div>
                                         </div>
                                         <div class="progress">Performance de Codigo
-                                            <div class="progress-bar" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                            <div class="progress-bar progress-bar-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">< %= tablas.preformanceCod %></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card ">
+                                    <div class="card-header text-center"> HABILIDADES BLANDAS </div>
+                                    <div class="card-body">
+                                        <div class="progress">Enfocado
+                                            <div class="progress-bar progress-bar-success" role="progressbar" style="width: 25%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">< %= tablas.enfocado %></div>
+                                        </div>
+                                        <div class="progress">Trab. Equipo
+                                            <div class="progress-bar progress-bar-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">< %= tablas.trabajoEq %></div>
+                                        </div>
+                                        <div class="progress">Comprometido
+                                            <div class="progress-bar progress-bar-success" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">< %= tablas.comprometido %></div>
+                                        </div>
+                                        <div class="progress">Comunicacion
+                                            <div class="progress-bar progress-bar-success" role="progressbar" style="width: 25%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">< %= tablas.comunicacion %></div>
+                                        </div>
+                                        <div class="progress">Aprendizaje
+                                            <div class="progress-bar progress-bar-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">< %= tablas.aprendizaje %></div>
+                                        </div>
+                                        <div class="progress">Resolucion Probl
+                                            <div class="progress-bar progress-bar-success" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">< %= tablas.resProblem %></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card ">
+                                    <div class="card-header text-center"> ENTORNOS </div>
+                                    <div class="card-body">
+                                        <div class="progress">Github
+                                            <div class="progress-bar" role="progressbar" style="width: 35%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">< %= tablas.github %></div>
+                                        </div>
+                                        <div class="progress">Trello
+                                            <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">< %= tablas.trello %></div>
+                                        </div>
+                                        <div class="progress">Slack
+                                            <div class="progress-bar" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">< %= tablas.slack %></div>
+                                        </div>
+                                        <div class="progress">Agiles
+                                            <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">< %= tablas.agiles %></div>
                                         </div>
                                     </div>
                                 </div>

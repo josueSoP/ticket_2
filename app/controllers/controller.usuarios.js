@@ -14,6 +14,20 @@ module.exports.listarRegistros = async ()=>{
 } 
 
 //////////// MODULOS PARA CREAR USUARIOS ////////////
+module.exports.existenciaId = async (id) => {
+    try {
+        let resultado = await modelUsuarios.existeId(id)
+        if (resultado) {
+            return true 
+        } else {
+            return resultado
+        }
+    } catch (err) {
+        console.log(err)
+        throw new Error('no semuy bien que paso')
+    }
+}
+
 module.exports.existenciaUsuario = async (data) => {
     try {
         let resultado = await modelUsuarios.existenciaUser(data)

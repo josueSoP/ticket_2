@@ -43,6 +43,21 @@ module.exports = class Datos {
     }
   }
 
+  static async existeId (id){
+    let buscaUsuario = [ id ]
+    try {
+        let resultado = await sequelize.query(`SELECT * FROM usuarios WHERE id_usuarios = ?`,
+        {replacements : buscaUsuario, type : sequelize.QueryTypes.SELECT})
+        if (resultado === null) {
+            return false
+        } else {
+            return true
+        }
+    } catch (error) {
+        throw new Error ('Ocurrio un error')
+    }
+  }
+
 ////////////// FUNCION PARA MODIFICAR UN USUARIOS ///////////
   static async buscarId (data){
     let usuarioUpdate = [ data ]
