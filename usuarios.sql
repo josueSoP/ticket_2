@@ -202,11 +202,11 @@ GO
 
 -----INSERTAR INFORMACION PARA EJEMPLOS -------
 INSERT INTO usuarios (nombres,apellidos,usuario,email,pass,imagen,ciudad,pais,edad,estudios,linkedin,hobies,cv) 
-VALUES ('Mario','Prez Mungia','mario1507','mario@gm','m123','pedro.png','Toluca','Mexico',26,'univeridad sw Toluca','https://www.linkedin.com/in/brandonbornancin/','leer','cv1')
+VALUES ('Mario','Prez Mungia','mario1507','mario@gm','m123456','pedro.png','Toluca','Mexico',26,'univeridad sw Toluca','https://www.linkedin.com/in/brandonbornancin/','leer','cv1')
 INSERT INTO usuarios (nombres,apellidos,usuario,email,pass,imagen,ciudad,pais,edad,estudios,linkedin,hobies,cv) 
-VALUES ('Pedro','Montes Villa','pedri11','pedro@gmail','p123','mario.png','Pereira','Colombia',20,'univeridad Colombia','https://www.linkedin.com/in/pedro/35b849b5/','ajedrez','hoja de vida')
+VALUES ('Pedro','Montes Villa','pedri11','pedro@gmail','p123456','mario.png','Pereira','Colombia',20,'univeridad Colombia','https://www.linkedin.com/in/pedro/35b849b5/','ajedrez','hoja de vida')
 INSERT INTO usuarios (nombres,apellidos,usuario,email,pass,imagen,ciudad,pais,edad,estudios,linkedin,hobies,cv) 
-VALUES ('Janet','Garcia Perez','JanGP21','janet@gmail','j123','janet.png','Rosario','Argentina',30,'univeridad Argentina','https://www.linkedin.com/in/janet/35b849b5/','cantar','hoja de vida')
+VALUES ('Janet','Garcia Perez','JanGP21','janet@gmail','j123456','janet.png','Rosario','Argentina',30,'univeridad Argentina','https://www.linkedin.com/in/janet/35b849b5/','cantar','hoja de vida')
 GO
 
 --INSERT INTO conocimientos (bd, apis, testing, seguridad, teoriaObj)
