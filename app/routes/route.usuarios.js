@@ -73,7 +73,7 @@ module.exports = async (app)=> {
         }
     })
 
-    app.post('/registro', async (req,res)=>{
+    app.post('/registro',midd.validarRegistro, async (req,res)=>{
         let data = req.body
         try{
             let resultado = await controladorUsuarios.existenciaUsuario(data)
@@ -109,7 +109,7 @@ module.exports = async (app)=> {
         }
     })
 
-    app.post('/update/:id_usuarios', midd.verificacionUsuario, async (req, res)=>{
+    app.post('/update/:id_usuarios', midd.verificacionUsuario,midd.validarActualizacion, async (req, res)=>{
     // app.post('/update/:id_usuarios',  async (req, res)=>{
         let id = req.params.id_usuarios;
         let data = req.body;

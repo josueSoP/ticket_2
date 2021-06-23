@@ -25,11 +25,12 @@ module.exports = class Datos {
     }
   }
 
-  ////////////// FUNCION PARA GUARDAR INFORMACION TABLA CONOCIMIENTOS esta aun no logro que guarde con referencia al id usuario ///////////
-  ////////////////lo intentare conectando al id de la tabla intermedia
+  ////////////// FUNCION PARA GUARDAR INFORMACION TABLA CONOCIMIENTOS esta aun no logro que guarde con referencia al id usuario
+  // se que se debe conectando al id de la tabla intermedia, pero no se muy bien como hacerlo
   static async guardarConId(id,data){
     let usuarioNuevo = [ data.bd, data.apis, data.testing, data.seguridad, data.teoriaObj, id]
     try {
+      /// aqui la sintaxis no es la correcta pero es para dar una idea de lo que quiero hacer
       await sequelize.query(`INSERT INTO conocimientos (bd, apis, testing, seguridad, teoriaObj) VALUES (?,?,?,?,?) WHERE id_usuarios= ?`,
       {replacements : usuarioNuevo, type: sequelize.QueryTypes.SELECT})
       return true

@@ -1,4 +1,5 @@
 const controllerLogin = require('../controllers/controller.login')
+const midd = require('../../middleware/midd.verificacion');
 
 module.exports = async (app)=> {
     //////////// LOGIN DE USUARIOS /////////////////////////
@@ -10,7 +11,7 @@ module.exports = async (app)=> {
         }
     })
 
-    app.post('/login', async (req, res) => {
+    app.post('/login', midd.validarLogin, async (req, res) => {
         let usuario = req.body
         try { 
             let resultado = await controllerLogin.chequearUsuario(usuario)

@@ -2,6 +2,7 @@ const controladorInfo = require('../controllers/controller.info')
 const controladorUsuarios = require('../controllers/controller.usuarios')
 const midd = require('../../middleware/midd.verificacion');
 
+
 module.exports = async (app)=> {
 
 ///////////// RUTA PARA LISTAR TABLAS CON INFOR ////////////////////

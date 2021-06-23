@@ -25,6 +25,7 @@ module.exports.listarInfoTablas = async ()=>{
 } 
 
 /////////MODULOS PARA CREAR INFORMACION //////////////////////
+//este modulo solo es una prueba para checar mi tabla que este bien y que si logre guardar datos
 module.exports.guardarTablas = async (data)=>{
     try {
         let resCono = await Conocimientos.guardar(id,data)
@@ -43,6 +44,8 @@ module.exports.guardarTablas = async (data)=>{
     }
 }
 
+////la idea es que este modulo pueda recibir el id de la tabla usuarios y los datos de 
+//la tabla conocimientos (AUN NO ME SALE)
 module.exports.guardarTablaConId = async (id,data)=>{
     try {
         let resCono = await Conocimientos.guardarConId(id,data)
@@ -60,32 +63,3 @@ module.exports.guardarTablaConId = async (id,data)=>{
         throw new Error('Error en el controlador guardarTablas')
     }
 }
-
-// // ////////////MODULOS PARA MODIFICAR USUARIO//////////////
-// //Seleccionar un solo registro por su ID para poderlo modificar
-// module.exports.buscarTablas = async (data)=>{
-//     try {
-//         let resultado = await Perfiles.buscarId(data)
-//         return resultado
-//     }catch (err) {
-//         throw new Error ('Ocurrio un problema en el controlador al BUSCAR perfil')
-//     }
-// }
-
-// //guardar modificacion
-// module.exports.modificarTablas = async (id, data) => {
-//     try {
-//         // await Conocimientos.update({BD:data.BD, apis:data.apis, testing:data.testing, seguridad:data.seguridad, teoriaObj:data.teoriaObj },{where: { id : id} })
-//         // await Tecnologias.update({nodeJs:data.nodeJs, frontend:data.frontend, swagger:data.swagger, JS:data.JS },{where: { id : id} })
-//         // await Desempeno.update({calidadCod:data.calidadCod, velEntrega:data.velEntrega, performanceCod:data.performanceCod },{where: { id : id} })
-//         // await Blandas.update({enfocado:data.enfocado, trabajoEq:data.trabajoEq, comprometido:data.comprometido, comunicacion:data.comunicacion, aprendizaje:data.aprendizaje, resProblem:data.resProblem },{where: { id : id} })
-//         // await Entornos.update({github:data.github, trello:data.trello, slack:data.slack, agiles:data.agiles },{where: { id : id} })
-//         await Extra.update({conExtra: data.conExtra },{where: { id : id} })
-//         let resultado = await Perfiles.findOne({where: {id: id}})
-//         return resultado;
-        
-//     }catch (err){
-//         throw new Error ('Controlador: Perfil no actualizado ') 
-//     }
-// }
-
